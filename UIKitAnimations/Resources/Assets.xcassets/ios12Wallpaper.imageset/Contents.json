@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ios12Wallpaper.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

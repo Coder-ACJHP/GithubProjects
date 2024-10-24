@@ -1,0 +1,544 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F2AD51A42CC966900081BDE1 /* ImageRippleTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD51A32CC966900081BDE1 /* ImageRippleTransitionViewController.swift */; };
+		F2AD51A92CC996370081BDE1 /* RippleEffectTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD51A82CC996370081BDE1 /* RippleEffectTransition.swift */; };
+		F2AD51AB2CC998180081BDE1 /* TransitionTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD51AA2CC998180081BDE1 /* TransitionTestViewController.swift */; };
+		F2AD51AE2CC9AA480081BDE1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD51AD2CC9AA480081BDE1 /* MainViewController.swift */; };
+		F2BEECFE2CCA3E2D00AA22C3 /* BarsSwipeEffectTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BEECFD2CCA3E2D00AA22C3 /* BarsSwipeEffectTransition.swift */; };
+		F2BEED022CCA446A00AA22C3 /* TransitionDestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BEED012CCA446A00AA22C3 /* TransitionDestinationViewController.swift */; };
+		F2BEED052CCA48E000AA22C3 /* CopyMachineTransitionEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BEED042CCA48E000AA22C3 /* CopyMachineTransitionEffect.swift */; };
+		F2BEED082CCA493D00AA22C3 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BEED072CCA493D00AA22C3 /* UIImage+Extension.swift */; };
+		F2BEED0A2CCA495500AA22C3 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BEED092CCA495500AA22C3 /* UIView+Extension.swift */; };
+		F2BEED0D2CCA4D3500AA22C3 /* ModEffectTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BEED0C2CCA4D3500AA22C3 /* ModEffectTransition.swift */; };
+		F2BEED0F2CCA629400AA22C3 /* FlashEffectTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BEED0E2CCA629400AA22C3 /* FlashEffectTransition.swift */; };
+		F2BEED132CCA74D000AA22C3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BEED122CCA74D000AA22C3 /* BaseViewController.swift */; };
+		F2BEED162CCA8A8700AA22C3 /* SwipeEffectTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BEED152CCA8A8700AA22C3 /* SwipeEffectTransition.swift */; };
+		F2C984B12CC9198B005D90F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C984B02CC9198B005D90F6 /* AppDelegate.swift */; };
+		F2C984B52CC9198B005D90F6 /* CarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C984B42CC9198B005D90F6 /* CarouselViewController.swift */; };
+		F2C984BA2CC9198C005D90F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2C984B92CC9198C005D90F6 /* Assets.xcassets */; };
+		F2C984BD2CC9198C005D90F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2C984BB2CC9198C005D90F6 /* LaunchScreen.storyboard */; };
+		F2C984C52CC91FC0005D90F6 /* CarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C984C42CC91FC0005D90F6 /* CarouselFlowLayout.swift */; };
+		F2C984C92CC92C16005D90F6 /* StackedItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C984C82CC92C16005D90F6 /* StackedItemsViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F2AD51A32CC966900081BDE1 /* ImageRippleTransitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRippleTransitionViewController.swift; sourceTree = "<group>"; };
+		F2AD51A82CC996370081BDE1 /* RippleEffectTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleEffectTransition.swift; sourceTree = "<group>"; };
+		F2AD51AA2CC998180081BDE1 /* TransitionTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionTestViewController.swift; sourceTree = "<group>"; };
+		F2AD51AD2CC9AA480081BDE1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		F2BEECFD2CCA3E2D00AA22C3 /* BarsSwipeEffectTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarsSwipeEffectTransition.swift; sourceTree = "<group>"; };
+		F2BEED012CCA446A00AA22C3 /* TransitionDestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionDestinationViewController.swift; sourceTree = "<group>"; };
+		F2BEED042CCA48E000AA22C3 /* CopyMachineTransitionEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyMachineTransitionEffect.swift; sourceTree = "<group>"; };
+		F2BEED072CCA493D00AA22C3 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		F2BEED092CCA495500AA22C3 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		F2BEED0C2CCA4D3500AA22C3 /* ModEffectTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModEffectTransition.swift; sourceTree = "<group>"; };
+		F2BEED0E2CCA629400AA22C3 /* FlashEffectTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashEffectTransition.swift; sourceTree = "<group>"; };
+		F2BEED122CCA74D000AA22C3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		F2BEED152CCA8A8700AA22C3 /* SwipeEffectTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeEffectTransition.swift; sourceTree = "<group>"; };
+		F2C984AD2CC9198B005D90F6 /* UIKitAnimations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitAnimations.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2C984B02CC9198B005D90F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F2C984B42CC9198B005D90F6 /* CarouselViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewController.swift; sourceTree = "<group>"; };
+		F2C984B92CC9198C005D90F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F2C984BC2CC9198C005D90F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F2C984BE2CC9198C005D90F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2C984C42CC91FC0005D90F6 /* CarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselFlowLayout.swift; sourceTree = "<group>"; };
+		F2C984C82CC92C16005D90F6 /* StackedItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedItemsViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F2C984AA2CC9198B005D90F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F2AD519F2CC966420081BDE1 /* RippleTransitionEffect */ = {
+			isa = PBXGroup;
+			children = (
+				F2AD51A82CC996370081BDE1 /* RippleEffectTransition.swift */,
+			);
+			path = RippleTransitionEffect;
+			sourceTree = "<group>";
+		};
+		F2AD51A22CC9667C0081BDE1 /* ImageRippleTransitionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2AD51A32CC966900081BDE1 /* ImageRippleTransitionViewController.swift */,
+			);
+			path = ImageRippleTransitionViewController;
+			sourceTree = "<group>";
+		};
+		F2AD51A52CC993B80081BDE1 /* Lifecycle */ = {
+			isa = PBXGroup;
+			children = (
+				F2C984B02CC9198B005D90F6 /* AppDelegate.swift */,
+			);
+			path = Lifecycle;
+			sourceTree = "<group>";
+		};
+		F2AD51A62CC993D20081BDE1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F2C984B92CC9198C005D90F6 /* Assets.xcassets */,
+				F2C984BB2CC9198C005D90F6 /* LaunchScreen.storyboard */,
+				F2C984BE2CC9198C005D90F6 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F2AD51AC2CC9AA350081BDE1 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2AD51AD2CC9AA480081BDE1 /* MainViewController.swift */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		F2BEECFC2CCA3DF200AA22C3 /* BarsSwipeEffectTransition */ = {
+			isa = PBXGroup;
+			children = (
+				F2BEECFD2CCA3E2D00AA22C3 /* BarsSwipeEffectTransition.swift */,
+			);
+			path = BarsSwipeEffectTransition;
+			sourceTree = "<group>";
+		};
+		F2BEECFF2CCA3F5100AA22C3 /* ViewControllerTransitions */ = {
+			isa = PBXGroup;
+			children = (
+				F2BEED002CCA3F6500AA22C3 /* TransitionTestViewController */,
+				F2BEED102CCA629D00AA22C3 /* FlashEffectTransition */,
+				F2BEED142CCA8A6800AA22C3 /* SwipeEffectTransition */,
+				F2BEED032CCA48CA00AA22C3 /* CopyMachineEffectTransition */,
+				F2BEECFC2CCA3DF200AA22C3 /* BarsSwipeEffectTransition */,
+				F2AD519F2CC966420081BDE1 /* RippleTransitionEffect */,
+				F2BEED0B2CCA4D2300AA22C3 /* ModEffectTransition */,
+			);
+			path = ViewControllerTransitions;
+			sourceTree = "<group>";
+		};
+		F2BEED002CCA3F6500AA22C3 /* TransitionTestViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2AD51AA2CC998180081BDE1 /* TransitionTestViewController.swift */,
+				F2BEED012CCA446A00AA22C3 /* TransitionDestinationViewController.swift */,
+			);
+			path = TransitionTestViewController;
+			sourceTree = "<group>";
+		};
+		F2BEED032CCA48CA00AA22C3 /* CopyMachineEffectTransition */ = {
+			isa = PBXGroup;
+			children = (
+				F2BEED042CCA48E000AA22C3 /* CopyMachineTransitionEffect.swift */,
+			);
+			path = CopyMachineEffectTransition;
+			sourceTree = "<group>";
+		};
+		F2BEED062CCA492400AA22C3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F2BEED072CCA493D00AA22C3 /* UIImage+Extension.swift */,
+				F2BEED092CCA495500AA22C3 /* UIView+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F2BEED0B2CCA4D2300AA22C3 /* ModEffectTransition */ = {
+			isa = PBXGroup;
+			children = (
+				F2BEED0C2CCA4D3500AA22C3 /* ModEffectTransition.swift */,
+			);
+			path = ModEffectTransition;
+			sourceTree = "<group>";
+		};
+		F2BEED102CCA629D00AA22C3 /* FlashEffectTransition */ = {
+			isa = PBXGroup;
+			children = (
+				F2BEED0E2CCA629400AA22C3 /* FlashEffectTransition.swift */,
+			);
+			path = FlashEffectTransition;
+			sourceTree = "<group>";
+		};
+		F2BEED112CCA74B700AA22C3 /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2BEED122CCA74D000AA22C3 /* BaseViewController.swift */,
+			);
+			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		F2BEED142CCA8A6800AA22C3 /* SwipeEffectTransition */ = {
+			isa = PBXGroup;
+			children = (
+				F2BEED152CCA8A8700AA22C3 /* SwipeEffectTransition.swift */,
+			);
+			path = SwipeEffectTransition;
+			sourceTree = "<group>";
+		};
+		F2C984A42CC9198A005D90F6 = {
+			isa = PBXGroup;
+			children = (
+				F2C984AF2CC9198B005D90F6 /* UIKitAnimations */,
+				F2C984AE2CC9198B005D90F6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F2C984AE2CC9198B005D90F6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F2C984AD2CC9198B005D90F6 /* UIKitAnimations.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F2C984AF2CC9198B005D90F6 /* UIKitAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				F2AD51A52CC993B80081BDE1 /* Lifecycle */,
+				F2AD51A62CC993D20081BDE1 /* Resources */,
+				F2BEED062CCA492400AA22C3 /* Extensions */,
+				F2BEED112CCA74B700AA22C3 /* BaseViewController */,
+				F2AD51AC2CC9AA350081BDE1 /* MainViewController */,
+				F2BEECFF2CCA3F5100AA22C3 /* ViewControllerTransitions */,
+				F2AD51A22CC9667C0081BDE1 /* ImageRippleTransitionViewController */,
+				F2C984C62CC92BE0005D90F6 /* CarouselViewController */,
+				F2C984C72CC92BF9005D90F6 /* StackedViewController */,
+			);
+			path = UIKitAnimations;
+			sourceTree = "<group>";
+		};
+		F2C984C62CC92BE0005D90F6 /* CarouselViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2C984C42CC91FC0005D90F6 /* CarouselFlowLayout.swift */,
+				F2C984B42CC9198B005D90F6 /* CarouselViewController.swift */,
+			);
+			path = CarouselViewController;
+			sourceTree = "<group>";
+		};
+		F2C984C72CC92BF9005D90F6 /* StackedViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2C984C82CC92C16005D90F6 /* StackedItemsViewController.swift */,
+			);
+			path = StackedViewController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F2C984AC2CC9198B005D90F6 /* UIKitAnimations */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2C984C12CC9198C005D90F6 /* Build configuration list for PBXNativeTarget "UIKitAnimations" */;
+			buildPhases = (
+				F2C984A92CC9198B005D90F6 /* Sources */,
+				F2C984AA2CC9198B005D90F6 /* Frameworks */,
+				F2C984AB2CC9198B005D90F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UIKitAnimations;
+			productName = CarouselCollectionView;
+			productReference = F2C984AD2CC9198B005D90F6 /* UIKitAnimations.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F2C984A52CC9198A005D90F6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					F2C984AC2CC9198B005D90F6 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = F2C984A82CC9198A005D90F6 /* Build configuration list for PBXProject "UIKitAnimations" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F2C984A42CC9198A005D90F6;
+			productRefGroup = F2C984AE2CC9198B005D90F6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F2C984AC2CC9198B005D90F6 /* UIKitAnimations */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F2C984AB2CC9198B005D90F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2C984BD2CC9198C005D90F6 /* LaunchScreen.storyboard in Resources */,
+				F2C984BA2CC9198C005D90F6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F2C984A92CC9198B005D90F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2BEECFE2CCA3E2D00AA22C3 /* BarsSwipeEffectTransition.swift in Sources */,
+				F2BEED0A2CCA495500AA22C3 /* UIView+Extension.swift in Sources */,
+				F2C984B52CC9198B005D90F6 /* CarouselViewController.swift in Sources */,
+				F2C984B12CC9198B005D90F6 /* AppDelegate.swift in Sources */,
+				F2BEED162CCA8A8700AA22C3 /* SwipeEffectTransition.swift in Sources */,
+				F2BEED082CCA493D00AA22C3 /* UIImage+Extension.swift in Sources */,
+				F2AD51A92CC996370081BDE1 /* RippleEffectTransition.swift in Sources */,
+				F2BEED0F2CCA629400AA22C3 /* FlashEffectTransition.swift in Sources */,
+				F2AD51A42CC966900081BDE1 /* ImageRippleTransitionViewController.swift in Sources */,
+				F2C984C92CC92C16005D90F6 /* StackedItemsViewController.swift in Sources */,
+				F2BEED0D2CCA4D3500AA22C3 /* ModEffectTransition.swift in Sources */,
+				F2BEED052CCA48E000AA22C3 /* CopyMachineTransitionEffect.swift in Sources */,
+				F2AD51AB2CC998180081BDE1 /* TransitionTestViewController.swift in Sources */,
+				F2C984C52CC91FC0005D90F6 /* CarouselFlowLayout.swift in Sources */,
+				F2BEED132CCA74D000AA22C3 /* BaseViewController.swift in Sources */,
+				F2BEED022CCA446A00AA22C3 /* TransitionDestinationViewController.swift in Sources */,
+				F2AD51AE2CC9AA480081BDE1 /* MainViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F2C984BB2CC9198C005D90F6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2C984BC2CC9198C005D90F6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F2C984BF2CC9198C005D90F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F2C984C02CC9198C005D90F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F2C984C22CC9198C005D90F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N26XM7U465;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UIKitAnimations/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "UIKit Animations";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coder.app.testProject.UIKitAnimations;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F2C984C32CC9198C005D90F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N26XM7U465;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UIKitAnimations/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "UIKit Animations";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coder.app.testProject.UIKitAnimations;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F2C984A82CC9198A005D90F6 /* Build configuration list for PBXProject "UIKitAnimations" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2C984BF2CC9198C005D90F6 /* Debug */,
+				F2C984C02CC9198C005D90F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2C984C12CC9198C005D90F6 /* Build configuration list for PBXNativeTarget "UIKitAnimations" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2C984C22CC9198C005D90F6 /* Debug */,
+				F2C984C32CC9198C005D90F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F2C984A52CC9198A005D90F6 /* Project object */;
+}
