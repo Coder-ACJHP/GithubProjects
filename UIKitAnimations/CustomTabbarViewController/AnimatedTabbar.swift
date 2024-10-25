@@ -7,12 +7,10 @@
 
 import UIKit
 
-class AnimatedTabbar: UITabBar, CAAnimationDelegate {
+class AnimatedTabbar: UITabBar {
 
     private var pathShapeLayer: CAShapeLayer!
     private var centerWidth: CGFloat = .zero
-    private var previousDrawnPath: CGPath!
-    private var newDrawnPath: CGPath!
     
     init() {
         super.init(frame: .zero)
@@ -29,22 +27,20 @@ class AnimatedTabbar: UITabBar, CAAnimationDelegate {
     }
     
     private func updateLayerPath() {
-        newDrawnPath = createCurvedTabPath()
-        
-        let layerAnimation = CABasicAnimation(keyPath: "path")
-        layerAnimation.delegate = self
-        layerAnimation.fromValue = previousDrawnPath
-        layerAnimation.toValue = newDrawnPath
-        layerAnimation.duration = 0.35
+        pathShapeLayer.path = createCurvedTabPath()
+        let layerAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        layerAnimation.fromValue = 0.0
+        layerAnimation.toValue = 1.0
+        layerAnimation.duration = 2.0
         layerAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        layerAnimation.isRemovedOnCompletion = false
         pathShapeLayer.add(layerAnimation, forKey: "pathAnimation")
+        pathShapeLayer.strokeEnd = 1.0
     }
 
     private func configureShapeLayer() {
         pathShapeLayer = CAShapeLayer()
-        let newPath = createCurvedTabPath()
-        previousDrawnPath = newPath
-        pathShapeLayer.path = newPath
+        pathShapeLayer.path = createCurvedTabPath()
         pathShapeLayer.strokeColor = UIColor.lightGray.cgColor
         pathShapeLayer.fillColor = #colorLiteral(red: 0.9782002568, green: 0.9782230258, blue: 0.9782107472, alpha: 1)
         pathShapeLayer.lineWidth = 0.5
@@ -62,13 +58,13 @@ class AnimatedTabbar: UITabBar, CAAnimationDelegate {
         path.addLine(to: CGPoint(x: (centerWidth - height ), y: 0))
         
         path.addCurve(
-            to: CGPoint(x: centerWidth, y: height - 40),
+            to: CGPoint(x: centerWidth, y: height - 25),
             controlPoint1: CGPoint(x: (centerWidth - 30), y: 0),
-            controlPoint2: CGPoint(x: centerWidth - 35, y: height - 40)
+            controlPoint2: CGPoint(x: centerWidth - 35, y: height - 25)
         )
         path.addCurve(
-            to: CGPoint(x: (centerWidth + height ), y: 0),
-            controlPoint1: CGPoint(x: centerWidth + 35, y: height - 40),
+            to: CGPoint(x: (centerWidth + height), y: 0),
+            controlPoint1: CGPoint(x: centerWidth + 35, y: height - 25),
             controlPoint2: CGPoint(x: (centerWidth + 30), y: 0)
         )
         
@@ -83,13 +79,6 @@ class AnimatedTabbar: UITabBar, CAAnimationDelegate {
         guard let selectedTabView = item.value(forKey: "view") as? UIView else { return }
         self.centerWidth = selectedTabView.frame.origin.x + (selectedTabView.frame.width / 2)
         updateLayerPath()
-    }
-    
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        if flag {
-            pathShapeLayer.path = newDrawnPath
-            previousDrawnPath = newDrawnPath
-        }
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {

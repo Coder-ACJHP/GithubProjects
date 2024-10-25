@@ -31,7 +31,25 @@ class CustomTabbarViewController: UITabBarController, UITabBarControllerDelegate
     
     private lazy var vc3: UIViewController = {
         let vc = BaseViewController()
-        vc.tabBarItem = .init(title: "Settings", image: UIImage(resource: .gear), tag: 2)
+        vc.tabBarItem = .init(title: "Friends", image: UIImage(resource: .personLineDottedPersonFill), tag: 2)
+        vc.view.backgroundColor = .white
+        vc.title = "Friends"
+        vc.tintColor = .black
+        return vc
+    }()
+    
+    private lazy var vc4: UIViewController = {
+        let vc = BaseViewController()
+        vc.tabBarItem = .init(title: "Posts", image: UIImage(resource: .arrowUpAndPersonRectanglePortrait), tag: 3)
+        vc.view.backgroundColor = .white
+        vc.title = "Posts"
+        vc.tintColor = .black
+        return vc
+    }()
+    
+    private lazy var vc5: UIViewController = {
+        let vc = BaseViewController()
+        vc.tabBarItem = .init(title: "Settings", image: UIImage(resource: .gear), tag: 4)
         vc.view.backgroundColor = .white
         vc.title = "Settings"
         vc.tintColor = .black
@@ -52,7 +70,7 @@ class CustomTabbarViewController: UITabBarController, UITabBarControllerDelegate
 
         delegate = self
         view.backgroundColor = .appLightGray
-        viewControllers = [vc1, vc2, vc3]
+        viewControllers = [vc1, vc2, vc3, vc4, vc5]
         tabBar.isTranslucent = true
         tabBar.isHidden = true
         
