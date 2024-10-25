@@ -9,8 +9,9 @@ import UIKit
 
 class BaseViewController: UIViewController, UINavigationBarDelegate {
     
-    private let navbar = UINavigationBar()
+    private(set) var navbar = UINavigationBar()
     private let backButton = UIButton(type: .system)
+    public var dismmissShouldAnimated = true
     
     override var title: String? {
         didSet {
@@ -40,6 +41,15 @@ class BaseViewController: UIViewController, UINavigationBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         createNavigationBar()
+        configureSwipeToBackGesture()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        titleAttributes = [
+            .foregroundColor : UIColor.black,
+            .font : UIFont.systemFont(ofSize: 19, weight: .bold)
+        ]
     }
     
     override func viewDidLayoutSubviews() {
@@ -73,9 +83,38 @@ class BaseViewController: UIViewController, UINavigationBarDelegate {
         navbar.delegate = self
     }
     
+    private func configureSwipeToBackGesture() {
+        let action = #selector(handleSwipe)
+        let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: action)
+        swipeGestureRecognizer.direction = .right
+        view.addGestureRecognizer(swipeGestureRecognizer)
+    }
+    
+    private func prepareForBackTransitionIfNeeded() {
+        // Do not compare the style like .push or .back because it'll
+        // immediately add a transition to current window insted check it
+        // with rawValue initializer
+        if modalTransitionStyle == UIModalTransitionStyle(rawValue: -1) {
+            modalTransitionStyle = .back
+            dismmissShouldAnimated = false
+        } else if modalTransitionStyle == UIModalTransitionStyle(rawValue: -2) {
+            modalTransitionStyle = .pushToTheBottom
+            dismmissShouldAnimated = false
+        } else if modalTransitionStyle == UIModalTransitionStyle(rawValue: -3) {
+            modalTransitionStyle = .pullFromTheTop
+            dismmissShouldAnimated = false
+        }
+    }
+    
+    @objc
+    private func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
+        if gesture.state == .ended { handleBackButtonPress() }
+    }
+    
     @objc
     private func handleBackButtonPress() {
-        dismiss(animated: true)
+        prepareForBackTransitionIfNeeded()
+        dismiss(animated: dismmissShouldAnimated)
     }
     
     // Must be confirmed for standalone navigation bar

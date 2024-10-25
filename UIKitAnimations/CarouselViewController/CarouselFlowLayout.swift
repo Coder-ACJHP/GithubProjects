@@ -16,7 +16,7 @@ class CarouselFlowLayout: UICollectionViewFlowLayout {
         guard let collectionView else { return }
         scrollDirection = .horizontal
         // Define cell size
-        itemSize = collectionView.bounds.inset(by: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)).size
+        itemSize = collectionView.bounds.inset(by: UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)).size
         // Calculate left right spaces
         let leftRightInset = (collectionView.bounds.width - itemSize.width) / 2
         // Adjust the minimum line spacing dynamically based on the scale factor

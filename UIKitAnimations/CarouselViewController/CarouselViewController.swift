@@ -15,7 +15,8 @@ class CarouselViewController: BaseViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.decelerationRate = .fast // Smooth scrolling effect
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: String(describing: UICollectionViewCell.self))
+        let id = CarouselViewCell.reuseIdentifier
+        collectionView.register(CarouselViewCell.self, forCellWithReuseIdentifier: id)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -31,16 +32,12 @@ class CarouselViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
+        view.backgroundColor = .appLightGray
         configureNavigationBar()
         configureCollectionView()
     }
     
     private func configureNavigationBar() {
-        titleAttributes = [
-            .foregroundColor : UIColor.black,
-            .font : UIFont.systemFont(ofSize: 21, weight: .bold)
-        ]
         tintColor = .black
         hasBackButton = true
     }
@@ -48,7 +45,7 @@ class CarouselViewController: BaseViewController {
     private func configureCollectionView() {
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: navbar.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -67,10 +64,8 @@ extension CarouselViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellId = String(describing: UICollectionViewCell.self)
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.contentView.layer.cornerRadius = 30
-        cell.contentView.backgroundColor = .white
+        let cellId = CarouselViewCell.reuseIdentifier
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CarouselViewCell
         return cell
     }
 }

@@ -60,10 +60,6 @@ class StackedItemsViewController: BaseViewController {
     }
     
     private func configureNavigationBar() {
-        titleAttributes = [
-            .foregroundColor : UIColor.black,
-            .font : UIFont.systemFont(ofSize: 21, weight: .bold)
-        ]
         tintColor = .black
         hasBackButton = true
     }

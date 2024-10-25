@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F27980C52CCBCD5900AFD849 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980C42CCBCD5900AFD849 /* ItemCell.swift */; };
+		F27980C72CCBCF6100AFD849 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980C62CCBCF6100AFD849 /* UIColor+Extension.swift */; };
+		F27980C92CCBD0E400AFD849 /* CarouselViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980C82CCBD0E400AFD849 /* CarouselViewCell.swift */; };
+		F27980CB2CCBDED900AFD849 /* UIModalTransitionStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980CA2CCBDED900AFD849 /* UIModalTransitionStyle+Extension.swift */; };
+		F27980CE2CCBE61C00AFD849 /* CustomTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980CD2CCBE61C00AFD849 /* CustomTabbarViewController.swift */; };
+		F27980D02CCBE64B00AFD849 /* AnimatedTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980CF2CCBE64B00AFD849 /* AnimatedTabbar.swift */; };
 		F2AD51A42CC966900081BDE1 /* ImageRippleTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD51A32CC966900081BDE1 /* ImageRippleTransitionViewController.swift */; };
 		F2AD51A92CC996370081BDE1 /* RippleEffectTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD51A82CC996370081BDE1 /* RippleEffectTransition.swift */; };
 		F2AD51AB2CC998180081BDE1 /* TransitionTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD51AA2CC998180081BDE1 /* TransitionTestViewController.swift */; };
@@ -29,6 +35,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F27980C42CCBCD5900AFD849 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		F27980C62CCBCF6100AFD849 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		F27980C82CCBD0E400AFD849 /* CarouselViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewCell.swift; sourceTree = "<group>"; };
+		F27980CA2CCBDED900AFD849 /* UIModalTransitionStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIModalTransitionStyle+Extension.swift"; sourceTree = "<group>"; };
+		F27980CD2CCBE61C00AFD849 /* CustomTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarViewController.swift; sourceTree = "<group>"; };
+		F27980CF2CCBE64B00AFD849 /* AnimatedTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTabbar.swift; sourceTree = "<group>"; };
 		F2AD51A32CC966900081BDE1 /* ImageRippleTransitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRippleTransitionViewController.swift; sourceTree = "<group>"; };
 		F2AD51A82CC996370081BDE1 /* RippleEffectTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleEffectTransition.swift; sourceTree = "<group>"; };
 		F2AD51AA2CC998180081BDE1 /* TransitionTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionTestViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +75,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F27980CC2CCBE5FE00AFD849 /* CustomTabbarViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F27980CF2CCBE64B00AFD849 /* AnimatedTabbar.swift */,
+				F27980CD2CCBE61C00AFD849 /* CustomTabbarViewController.swift */,
+			);
+			path = CustomTabbarViewController;
+			sourceTree = "<group>";
+		};
 		F2AD519F2CC966420081BDE1 /* RippleTransitionEffect */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +121,7 @@
 		F2AD51AC2CC9AA350081BDE1 /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F27980C42CCBCD5900AFD849 /* ItemCell.swift */,
 				F2AD51AD2CC9AA480081BDE1 /* MainViewController.swift */,
 			);
 			path = MainViewController;
@@ -149,6 +171,8 @@
 			children = (
 				F2BEED072CCA493D00AA22C3 /* UIImage+Extension.swift */,
 				F2BEED092CCA495500AA22C3 /* UIView+Extension.swift */,
+				F27980C62CCBCF6100AFD849 /* UIColor+Extension.swift */,
+				F27980CA2CCBDED900AFD849 /* UIModalTransitionStyle+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -213,6 +237,7 @@
 				F2AD51A22CC9667C0081BDE1 /* ImageRippleTransitionViewController */,
 				F2C984C62CC92BE0005D90F6 /* CarouselViewController */,
 				F2C984C72CC92BF9005D90F6 /* StackedViewController */,
+				F27980CC2CCBE5FE00AFD849 /* CustomTabbarViewController */,
 			);
 			path = UIKitAnimations;
 			sourceTree = "<group>";
@@ -220,6 +245,7 @@
 		F2C984C62CC92BE0005D90F6 /* CarouselViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F27980C82CCBD0E400AFD849 /* CarouselViewCell.swift */,
 				F2C984C42CC91FC0005D90F6 /* CarouselFlowLayout.swift */,
 				F2C984B42CC9198B005D90F6 /* CarouselViewController.swift */,
 			);
@@ -305,17 +331,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2BEECFE2CCA3E2D00AA22C3 /* BarsSwipeEffectTransition.swift in Sources */,
+				F27980C72CCBCF6100AFD849 /* UIColor+Extension.swift in Sources */,
 				F2BEED0A2CCA495500AA22C3 /* UIView+Extension.swift in Sources */,
+				F27980C52CCBCD5900AFD849 /* ItemCell.swift in Sources */,
+				F27980D02CCBE64B00AFD849 /* AnimatedTabbar.swift in Sources */,
 				F2C984B52CC9198B005D90F6 /* CarouselViewController.swift in Sources */,
 				F2C984B12CC9198B005D90F6 /* AppDelegate.swift in Sources */,
 				F2BEED162CCA8A8700AA22C3 /* SwipeEffectTransition.swift in Sources */,
 				F2BEED082CCA493D00AA22C3 /* UIImage+Extension.swift in Sources */,
 				F2AD51A92CC996370081BDE1 /* RippleEffectTransition.swift in Sources */,
+				F27980CB2CCBDED900AFD849 /* UIModalTransitionStyle+Extension.swift in Sources */,
 				F2BEED0F2CCA629400AA22C3 /* FlashEffectTransition.swift in Sources */,
 				F2AD51A42CC966900081BDE1 /* ImageRippleTransitionViewController.swift in Sources */,
+				F27980CE2CCBE61C00AFD849 /* CustomTabbarViewController.swift in Sources */,
 				F2C984C92CC92C16005D90F6 /* StackedItemsViewController.swift in Sources */,
 				F2BEED0D2CCA4D3500AA22C3 /* ModEffectTransition.swift in Sources */,
 				F2BEED052CCA48E000AA22C3 /* CopyMachineTransitionEffect.swift in Sources */,
+				F27980C92CCBD0E400AFD849 /* CarouselViewCell.swift in Sources */,
 				F2AD51AB2CC998180081BDE1 /* TransitionTestViewController.swift in Sources */,
 				F2C984C52CC91FC0005D90F6 /* CarouselFlowLayout.swift in Sources */,
 				F2BEED132CCA74D000AA22C3 /* BaseViewController.swift in Sources */,
@@ -473,6 +505,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -503,6 +536,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

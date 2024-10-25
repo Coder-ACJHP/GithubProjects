@@ -9,35 +9,54 @@ import UIKit
 
 class MainViewController: BaseViewController {
     
-    private let vStackView: UIStackView = {
-        let stackView = UIStackView(frame: .zero)
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = 10
-        stackView.layoutMargins = UIEdgeInsets(top: 18, left: 18, bottom: 18, right: 18)
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
+    struct Section {
+        var title: String
+        var items: Array<String>
+    }
+    
+    private let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.separatorStyle = .none
+        tableView.separatorInset = .zero
+        tableView.layer.masksToBounds = true
+        tableView.separatorColor = .clear
+        tableView.backgroundColor = .clear
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.contentInsetAdjustmentBehavior = .never
+        let id = ItemCell.reuseIdentifier
+        tableView.register(ItemCell.self, forCellReuseIdentifier: id)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
     }()
     
-    private let destinationVCList: Array<String> = [
-        "Image RippleEffect",
-        "Carousel CollectionView",
-        "3D Stacked Items",
-        "RippleTransition",
-        "BarSwipeTransition",
-        "CopyMachineTransition",
-        "ModTransition",
-        "FlashTransition",
-        "SwipeTransition"
+    private let sections: Array<Section> = [
+        .init(title: "Animations", items: [
+            "Ripple On Images"
+        ]),
+        .init(title: "Custom Components", items: [
+            "Carousel CollectionView",
+            "3D Stacked Items",
+            "Custom Tabbar"
+        ]),
+        .init(title: "Transitions", items: [
+            "Ripple",
+            "Bar Swipe",
+            "Copy Machine",
+            "Mod",
+            "Flash",
+            "Swipe"
+        ]),
     ]
-
+    private let preferredCellHeight: CGFloat = 78.0
+    private let preferredHeaderViewHeight: CGFloat = 30.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(white: 1, alpha: 0.4)
+        view.backgroundColor = .appLightGray
         configureNavigationBar()
-        configureVStackView()
-        configureFeatureButtons()
+        configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,70 +66,93 @@ class MainViewController: BaseViewController {
     
     private func configureNavigationBar() {
         title = "UIKit Animations"
-        titleAttributes = [
-            .foregroundColor : UIColor.black,
-            .font : UIFont.systemFont(ofSize: 21, weight: .bold)
-        ]
         tintColor = .black
         hasBackButton = false
     }
     
-    private func configureVStackView() {
-        view.addSubview(vStackView)
+    private func configureTableView() {
+        view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            vStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            vStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            vStackView.widthAnchor.constraint(equalToConstant: view.bounds.width - 40),
-            vStackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 1)
+            tableView.topAnchor.constraint(equalTo: navbar.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+        tableView.delegate = self
+        tableView.dataSource = self
     }
-//
-    private func configureFeatureButtons() {
-        for index in 0 ..< destinationVCList.count {
-            let button = UIButton(type: .system)
-            button.backgroundColor = .black
-            button.layer.cornerRadius = 8
-            button.layer.masksToBounds = true
-            button.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
-            button.setTitle(destinationVCList[index], for: .normal)
-            button.setTitleColor(.white, for: .normal)
-            button.tag = index
-            vStackView.addArrangedSubview(button)
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.heightAnchor.constraint(equalToConstant: 50).isActive = true
-            button.addTarget(self, action: #selector(handleButtonPress(_:)), for: .touchUpInside)
-        }
-    }
+}
 
-    @objc
-    private func handleButtonPress(_ sender: UIButton) {
-        let title = destinationVCList[sender.tag]
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        sections.count
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        sections[section].items.count
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        preferredHeaderViewHeight
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: tableView.frame.width, height: preferredHeaderViewHeight)))
+        let titleLabel = UILabel()
+        titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+        titleLabel.textColor = .lightGray
+        titleLabel.text = sections[section].title
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        headerView.addSubview(titleLabel)
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 18),
+            titleLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -18),
+            titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 1),
+        ])
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellId = ItemCell.reuseIdentifier
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ItemCell
+        cell.configure(with: sections[indexPath.section].items[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        preferredCellHeight
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let title = sections[indexPath.section].items[indexPath.row]
+        
         var destinationVC: UIViewController?
-        switch title {
-        case "Image RippleEffect":
+        switch title.lowercased() {
+        case let str where str.localizedStandardContains("on images"):
             destinationVC = ImageRippleTransitionViewController(title: title)
-        case "Carousel CollectionView":
+        case let str where str.localizedStandardContains("Carousel"):
             destinationVC = CarouselViewController(title: title)
-        case "3D Stacked Items":
+        case let str where str.localizedStandardContains("3D"):
             destinationVC = StackedItemsViewController(title: title)
-        case "RippleTransition":
+        case let str where str.localizedStandardContains("tabbar"):
+            destinationVC = CustomTabbarViewController(title: title)
+        case let str where str.localizedStandardContains("ripple"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .ripple)
-        case "BarSwipeTransition":
+        case let str where str.localizedStandardContains("bar"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .barSwipe)
-        case "CopyMachineTransition":
+        case let str where str.localizedStandardContains("copy"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .copyMachine)
-        case "ModTransition":
+        case let str where str.localizedStandardContains("mod"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .mod)
-        case "FlashTransition":
+        case let str where str.localizedStandardContains("flash"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .flash)
-        case "SwipeTransition":
+        case let str where str.localizedStandardContains("swipe"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .swipe)
         default: break
         }
-
+        
         guard let destinationVC else { return }
-        destinationVC.modalTransitionStyle = .coverVertical
+        destinationVC.modalTransitionStyle = .push
         destinationVC.modalPresentationStyle = .fullScreen
-        present(destinationVC, animated: true)
+        present(destinationVC, animated: false)
     }
 }
