@@ -8,3 +8,6 @@ Detailed explanation made in my Medium article [Create custom ViewController Tra
 2. Added UINavigationController push and back transitions without using UINavigationController (can be selected before presenting ViewController as modalTransitionStyle = .push or .back)
 Do not pass true to present method
 3. MainViewController ui refactored (Used custom tableView + cell with sections)
+### 28/10/24 
+1. Added tinder like card swipe animation
+2. All view controller transitions has been bidrectional (push -> reversed push as back)
