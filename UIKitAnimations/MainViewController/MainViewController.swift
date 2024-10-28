@@ -37,6 +37,7 @@ class MainViewController: BaseViewController {
         ]),
         .init(title: "Custom Components", items: [
             "Carousel CollectionView",
+            "3D Card Carousel",
             "3D Stacked Items",
             "Custom Tabbar"
         ]),
@@ -129,10 +130,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         switch title.lowercased() {
         case let str where str.localizedStandardContains("on images"):
             destinationVC = ImageRippleTransitionViewController(title: title)
-        case let str where str.localizedStandardContains("Carousel"):
+        case let str where str.localizedStandardContains("Carousel collectionView"):
             destinationVC = CarouselViewController(title: title)
-        case let str where str.localizedStandardContains("3D"):
+        case let str where str.localizedStandardContains("3D stacked"):
             destinationVC = StackedItemsViewController(title: title)
+        case let str where str.localizedStandardContains("3D Card Carousel"):
+            destinationVC = CardCarousel3DViewController(title: title)
         case let str where str.localizedStandardContains("tabbar"):
             destinationVC = CustomTabbarViewController(title: title)
         case let str where str.localizedStandardContains("ripple"):

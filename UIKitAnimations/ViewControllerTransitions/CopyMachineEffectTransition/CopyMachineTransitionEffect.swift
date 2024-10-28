@@ -18,9 +18,11 @@ class CopyMachineEffectTransition: NSObject, UIViewControllerAnimatedTransitioni
     private var containerView: UIView?
     private var transitionContext: UIViewControllerContextTransitioning?
     private var currentTime: CGFloat = 0.0
+    private var isPresenting: Bool
     
-    init(duration: TimeInterval = 1.0) {
+    init(duration: TimeInterval = 1.0, isPresenting: Bool) {
         self.duration = duration
+        self.isPresenting = isPresenting
         guard let mtlDevice = MTLCreateSystemDefaultDevice() else {
             fatalError("Cannot create CIContext MTLDevice")
         }
@@ -48,16 +50,19 @@ class CopyMachineEffectTransition: NSObject, UIViewControllerAnimatedTransitioni
             transitionContext.completeTransition(false)
             return
         }
+        
 
         // Setup the copyMachine filter with appropriate extent
         let ciExtent = CIVector(x: 0, y: 0, z: toCIImage.extent.width, w: toCIImage.extent.height)
+        // Set the appropriate angle for presentation and dismissal
+        let angle: CGFloat = isPresenting ? .pi : degreeToRadians(degree: 180)
 
         copyMachineFilter = createCopyMachineFilter(
-            inputImage: fromCIImage,
-            inputTargetImage: toCIImage,
+            inputImage: isPresenting ? fromCIImage : toCIImage,
+            inputTargetImage: isPresenting ? toCIImage : fromCIImage,
             inputExtent: ciExtent,
             inputColor: CIColor(color: .white),
-            inputAngle: NSNumber(value: CGFloat.pi),
+            inputAngle: NSNumber(value: angle),
             inputWidth: NSNumber(value: max(targetSize.width, targetSize.height)),
             inputOpacity: NSNumber(value: 1.0)
         )
@@ -71,6 +76,9 @@ class CopyMachineEffectTransition: NSObject, UIViewControllerAnimatedTransitioni
 
         let imageView = UIImageView(frame: containerView!.bounds)
         containerView?.addSubview(imageView)
+        
+        // Set the initial value of currentTime based on whether it's presenting or dismissing
+        currentTime = isPresenting ? .zero : 1.0
 
         // Start the display link to animate the transition
         startDisplayLink()
@@ -89,9 +97,16 @@ class CopyMachineEffectTransition: NSObject, UIViewControllerAnimatedTransitioni
         else { return }
 
         // Smoothly increment time between 0 and 1
-        currentTime += CGFloat(displayLink.duration) / CGFloat(duration)
-
-        if currentTime >= 1.0 {
+        // Adjust `currentTime` based on whether it’s presenting or dismissing
+        if isPresenting {
+            currentTime += CGFloat(displayLink.duration) / CGFloat(duration)
+        } else {
+            currentTime -= CGFloat(displayLink.duration) / CGFloat(duration)
+        }
+        // Clamp value between 0 and 1
+        let progress = min(max(currentTime, 0.0), 1.0)
+        
+        if progress <= 0.0 || progress >= 1.0 {
             // End the transition
             displayLink.invalidate()
             displayLink.remove(from: .main, forMode: .common)

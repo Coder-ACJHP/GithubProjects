@@ -114,15 +114,15 @@ class TransitionTestViewController: BaseViewController, UIViewControllerTransiti
         switch transitionType {
         case .none: return nil
         case .barSwipe:
-            return BarsSwipeEffectTransition(duration: transitionDuration)
+            return BarsSwipeEffectTransition(duration: transitionDuration, isPresenting: true)
         case .ripple:
             return RippleEffectTransition(duration: transitionDuration)
         case .copyMachine:
-            return CopyMachineEffectTransition(duration: transitionDuration)
+            return CopyMachineEffectTransition(duration: transitionDuration, isPresenting: true)
         case .mod:
-            return ModEffectTransition(duration: transitionDuration)
+            return ModEffectTransition(duration: transitionDuration, isPresenting: true)
         case .flash:
-            return FlashEffectTransition(duration: transitionDuration)
+            return FlashEffectTransition(duration: transitionDuration, isPresenting: true)
         case .swipe:
             return SwipeEffectTransition(duration: transitionDuration, direction: .rightToleft)
         }
@@ -132,15 +132,15 @@ class TransitionTestViewController: BaseViewController, UIViewControllerTransiti
         switch transitionType {
         case .none: return nil
         case .barSwipe:
-            return BarsSwipeEffectTransition(duration: transitionDuration)
+            return BarsSwipeEffectTransition(duration: transitionDuration, isPresenting: false)
         case .ripple:
             return RippleEffectTransition(duration: transitionDuration)
         case .copyMachine:
-            return CopyMachineEffectTransition(duration: transitionDuration)
+            return CopyMachineEffectTransition(duration: transitionDuration, isPresenting: false)
         case .mod:
-            return ModEffectTransition(duration: transitionDuration)
+            return ModEffectTransition(duration: transitionDuration, isPresenting: false)
         case .flash:
-            return FlashEffectTransition(duration: transitionDuration)
+            return FlashEffectTransition(duration: transitionDuration, isPresenting: false)
         case .swipe:
             return SwipeEffectTransition(duration: transitionDuration, direction: .leftToRight)
         }

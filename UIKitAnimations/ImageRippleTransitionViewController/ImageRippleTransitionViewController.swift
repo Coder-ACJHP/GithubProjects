@@ -26,7 +26,7 @@ class ImageRippleTransitionViewController: BaseViewController {
     private var isAnimationStarted = false
     private var isImageNeedsToSwitch = false
     private var transitionImages: Array<ImageResource> = [
-        .background, .backgroundImage2
+        .introOliveria1, .introOliveria2
     ]
     private var resizedTransitionImages: Array<UIImage?> = []
     

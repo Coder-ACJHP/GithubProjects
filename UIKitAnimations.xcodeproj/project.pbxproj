@@ -32,6 +32,8 @@
 		F2C984BD2CC9198C005D90F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2C984BB2CC9198C005D90F6 /* LaunchScreen.storyboard */; };
 		F2C984C52CC91FC0005D90F6 /* CarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C984C42CC91FC0005D90F6 /* CarouselFlowLayout.swift */; };
 		F2C984C92CC92C16005D90F6 /* StackedItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C984C82CC92C16005D90F6 /* StackedItemsViewController.swift */; };
+		F2F2135C2CCF7CBB00D646DA /* CardCarousel3DViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F2135B2CCF7CBA00D646DA /* CardCarousel3DViewController.swift */; };
+		F2F2135F2CCF855300D646DA /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F2135E2CCF855300D646DA /* CGFloat+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		F2C984BE2CC9198C005D90F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2C984C42CC91FC0005D90F6 /* CarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselFlowLayout.swift; sourceTree = "<group>"; };
 		F2C984C82CC92C16005D90F6 /* StackedItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedItemsViewController.swift; sourceTree = "<group>"; };
+		F2F2135B2CCF7CBA00D646DA /* CardCarousel3DViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCarousel3DViewController.swift; sourceTree = "<group>"; };
+		F2F2135E2CCF855300D646DA /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +177,7 @@
 				F2BEED092CCA495500AA22C3 /* UIView+Extension.swift */,
 				F27980C62CCBCF6100AFD849 /* UIColor+Extension.swift */,
 				F27980CA2CCBDED900AFD849 /* UIModalTransitionStyle+Extension.swift */,
+				F2F2135E2CCF855300D646DA /* CGFloat+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -235,6 +240,7 @@
 				F2AD51AC2CC9AA350081BDE1 /* MainViewController */,
 				F2BEECFF2CCA3F5100AA22C3 /* ViewControllerTransitions */,
 				F2AD51A22CC9667C0081BDE1 /* ImageRippleTransitionViewController */,
+				F2F2135D2CCF7D7B00D646DA /* CardCarousel3DViewController */,
 				F2C984C62CC92BE0005D90F6 /* CarouselViewController */,
 				F2C984C72CC92BF9005D90F6 /* StackedViewController */,
 				F27980CC2CCBE5FE00AFD849 /* CustomTabbarViewController */,
@@ -258,6 +264,14 @@
 				F2C984C82CC92C16005D90F6 /* StackedItemsViewController.swift */,
 			);
 			path = StackedViewController;
+			sourceTree = "<group>";
+		};
+		F2F2135D2CCF7D7B00D646DA /* CardCarousel3DViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2F2135B2CCF7CBA00D646DA /* CardCarousel3DViewController.swift */,
+			);
+			path = CardCarousel3DViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,6 +348,7 @@
 				F27980C72CCBCF6100AFD849 /* UIColor+Extension.swift in Sources */,
 				F2BEED0A2CCA495500AA22C3 /* UIView+Extension.swift in Sources */,
 				F27980C52CCBCD5900AFD849 /* ItemCell.swift in Sources */,
+				F2F2135F2CCF855300D646DA /* CGFloat+Extension.swift in Sources */,
 				F27980D02CCBE64B00AFD849 /* AnimatedTabbar.swift in Sources */,
 				F2C984B52CC9198B005D90F6 /* CarouselViewController.swift in Sources */,
 				F2C984B12CC9198B005D90F6 /* AppDelegate.swift in Sources */,
@@ -348,6 +363,7 @@
 				F2BEED0D2CCA4D3500AA22C3 /* ModEffectTransition.swift in Sources */,
 				F2BEED052CCA48E000AA22C3 /* CopyMachineTransitionEffect.swift in Sources */,
 				F27980C92CCBD0E400AFD849 /* CarouselViewCell.swift in Sources */,
+				F2F2135C2CCF7CBB00D646DA /* CardCarousel3DViewController.swift in Sources */,
 				F2AD51AB2CC998180081BDE1 /* TransitionTestViewController.swift in Sources */,
 				F2C984C52CC91FC0005D90F6 /* CarouselFlowLayout.swift in Sources */,
 				F2BEED132CCA74D000AA22C3 /* BaseViewController.swift in Sources */,

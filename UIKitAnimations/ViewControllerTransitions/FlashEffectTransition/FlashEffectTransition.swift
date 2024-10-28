@@ -20,10 +20,12 @@ class FlashEffectTransition: NSObject, UIViewControllerAnimatedTransitioning {
     private var transitionContext: UIViewControllerContextTransitioning?
     private var currentTime: CGFloat = 0.0
     private var color: UIColor = .white
+    private var isPresenting: Bool
     
-    init(duration: TimeInterval = 1.0, color: UIColor = .white) {
+    init(duration: TimeInterval = 1.0, color: UIColor = .white, isPresenting: Bool) {
         self.duration = duration
         self.color = color
+        self.isPresenting = isPresenting
         guard let mtlDevice = MTLCreateSystemDefaultDevice() else {
             fatalError("Cannot create CIContext MTLDevice")
         }
@@ -74,6 +76,9 @@ class FlashEffectTransition: NSObject, UIViewControllerAnimatedTransitioning {
         let imageView = UIImageView(frame: containerView!.bounds)
         containerView?.addSubview(imageView)
         
+        // Set the initial value of currentTime based on whether it's presenting or dismissing
+        currentTime = isPresenting ? .zero : 1.0
+        
         // Start the display link to animate the transition
         startDisplayLink()
     }
@@ -90,11 +95,16 @@ class FlashEffectTransition: NSObject, UIViewControllerAnimatedTransitioning {
               let toView = transitionContext?.view(forKey: .to)
         else { return }
         
-        // Smoothly increment time between 0 and 1
-        currentTime += CGFloat(displayLink.duration) / CGFloat(duration)
-        currentTime = min(currentTime, 1.0) // Ensure it doesn't exceed 1.0
+        // Adjust `currentTime` based on whether it’s presenting or dismissing
+        if isPresenting {
+            currentTime += CGFloat(displayLink.duration) / CGFloat(duration)
+        } else {
+            currentTime -= CGFloat(displayLink.duration) / CGFloat(duration)
+        }
+        // Clamp value between 0 and 1
+        let progress = min(max(currentTime, 0.0), 1.0)
         
-        if currentTime >= 1.0 {
+        if progress <= 0.0 || progress >= 1.0 {
             // End the transition
             displayLink.invalidate()
             displayLink.remove(from: .main, forMode: .common)

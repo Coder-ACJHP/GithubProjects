@@ -18,9 +18,11 @@ class BarsSwipeEffectTransition: NSObject, UIViewControllerAnimatedTransitioning
     private var containerView: UIView?
     private var transitionContext: UIViewControllerContextTransitioning?
     private var currentTime: CGFloat = 0.0
+    private var isPresenting: Bool
     
-    init(duration: TimeInterval = 1.0) {
+    init(duration: TimeInterval = 1.0, isPresenting: Bool) {
         self.duration = duration
+        self.isPresenting = isPresenting
         guard let mtlDevice = MTLCreateSystemDefaultDevice() else {
             fatalError("Cannot create CIContext MTLDevice")
         }
@@ -39,7 +41,6 @@ class BarsSwipeEffectTransition: NSObject, UIViewControllerAnimatedTransitioning
             return
         }
 
-        // Ensure both views are the same size
         let targetSize = fromView.bounds.size
         guard let fromImage = fromView.snapshotImage()?.resized(to: targetSize),
               let fromCIImage = CIImage(image: fromImage),
@@ -48,11 +49,14 @@ class BarsSwipeEffectTransition: NSObject, UIViewControllerAnimatedTransitioning
             transitionContext.completeTransition(false)
             return
         }
-        
+
+        // Set the appropriate angle for presentation and dismissal
+        let angle: CGFloat = isPresenting ? .pi : degreeToRadians(degree: 180)
+
         barSwipeFilter = createBarsSwipeFilter(
-            inputImage: fromCIImage,
-            inputTargetImage: toCIImage,
-            inputAngle: NSNumber(value: CGFloat.pi),
+            inputImage: isPresenting ? fromCIImage : toCIImage,
+            inputTargetImage: isPresenting ? toCIImage : fromCIImage,
+            inputAngle: NSNumber(value: angle),
             inputWidth: 80.0,
             inputBarOffset: 10.0
         )
@@ -60,14 +64,14 @@ class BarsSwipeEffectTransition: NSObject, UIViewControllerAnimatedTransitioning
         containerView = transitionContext.containerView
         self.transitionContext = transitionContext
 
-        // Add the destination view and a temporary image view
+        // Add the destination view to the hierarchy and hide it initially
         containerView?.addSubview(toView)
         toView.alpha = 0
 
         let imageView = UIImageView(frame: containerView!.bounds)
         containerView?.addSubview(imageView)
 
-        // Start the display link to animate the transition
+        // Start the animation loop
         startDisplayLink()
     }
     
@@ -80,35 +84,34 @@ class BarsSwipeEffectTransition: NSObject, UIViewControllerAnimatedTransitioning
         guard let barSwipeFilter = barSwipeFilter,
               let containerView = containerView,
               let imageView = containerView.subviews.compactMap({ $0 as? UIImageView }).first,
-              let toView = transitionContext?.view(forKey: .to)
-        else { return }
+              let toView = transitionContext?.view(forKey: .to) else { return }
 
-        // Smoothly increment time between 0 and 1
+        // Update the progress depending on the transition direction
         currentTime += CGFloat(displayLink.duration) / CGFloat(duration)
+        let progress = isPresenting ? currentTime : (1.0 - currentTime)
 
-        if currentTime >= 1.0 {
-            // End the transition
+        if progress <= 0.0 || progress >= 1.0 {
+            // Transition complete
             displayLink.invalidate()
             displayLink.remove(from: .main, forMode: .common)
             self.displayLink = nil
-            // Ensure the transition ends cleanly
             imageView.removeFromSuperview()
             toView.alpha = 1.0
             transitionContext?.completeTransition(true)
         } else {
-            // Update the barSwipe effect
-            barSwipeFilter.setValue(currentTime, forKey: kCIInputTimeKey)
+            // Update the bar swipe effect with current progress
+            barSwipeFilter.setValue(progress, forKey: kCIInputTimeKey)
             if let outputImage = barSwipeFilter.outputImage,
                let cgImage = ciContext.createCGImage(outputImage, from: outputImage.extent) {
                 DispatchQueue.main.async {
                     imageView.image = UIImage(cgImage: cgImage)
                 }
             }
-            // Gradually increase the opacity of the destination view
-            toView.alpha = CGFloat(currentTime)
+            // Adjust the view's opacity based on progress
+            toView.alpha = progress
         }
     }
-    
+
     func createBarsSwipeFilter(
         inputImage: CIImage,
         inputTargetImage: CIImage,
@@ -116,19 +119,20 @@ class BarsSwipeEffectTransition: NSObject, UIViewControllerAnimatedTransitioning
         inputWidth: NSNumber = 30,
         inputBarOffset: NSNumber = 10,
         inputTime: NSNumber = 0) -> CIFilter? {
-            guard let filter = CIFilter(name: "CIBarsSwipeTransition") else {
-                return nil
-            }
-            filter.setDefaults()
-            filter.setValue(inputImage, forKey: kCIInputImageKey)
-            filter.setValue(inputTargetImage, forKey: kCIInputTargetImageKey)
-            filter.setValue(inputAngle, forKey: kCIInputAngleKey)
-            filter.setValue(inputWidth, forKey: kCIInputWidthKey)
-            filter.setValue(inputBarOffset, forKey: "inputBarOffset")
-            filter.setValue(inputTime, forKey: kCIInputTimeKey)
-            return filter
+        guard let filter = CIFilter(name: "CIBarsSwipeTransition") else {
+            return nil
         }
+        filter.setDefaults()
+        filter.setValue(inputImage, forKey: kCIInputImageKey)
+        filter.setValue(inputTargetImage, forKey: kCIInputTargetImageKey)
+        filter.setValue(inputAngle, forKey: kCIInputAngleKey)
+        filter.setValue(inputWidth, forKey: kCIInputWidthKey)
+        filter.setValue(inputBarOffset, forKey: "inputBarOffset")
+        filter.setValue(inputTime, forKey: kCIInputTimeKey)
+        return filter
+    }
 }
+
 
 
 
