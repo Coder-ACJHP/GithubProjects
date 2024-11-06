@@ -33,7 +33,9 @@ class MainViewController: BaseViewController {
     
     private let sections: Array<Section> = [
         .init(title: "Animations", items: [
-            "Ripple On Images"
+            "Ripple On Images",
+            "Tinder Like",
+            "Hover Gradient Border"
         ]),
         .init(title: "Custom Components", items: [
             "Carousel CollectionView",
@@ -41,7 +43,7 @@ class MainViewController: BaseViewController {
             "3D Stacked Items",
             "Custom Tabbar"
         ]),
-        .init(title: "Transitions", items: [
+        .init(title: "Transitions (bidirectional)", items: [
             "Ripple",
             "Bar Swipe",
             "Copy Machine",
@@ -49,6 +51,9 @@ class MainViewController: BaseViewController {
             "Flash",
             "Swipe"
         ]),
+        .init(title: "Ar Models", items: [
+            "Interactive Robot"
+        ])
     ]
     private let preferredCellHeight: CGFloat = 78.0
     private let preferredHeaderViewHeight: CGFloat = 30.0
@@ -130,10 +135,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         switch title.lowercased() {
         case let str where str.localizedStandardContains("on images"):
             destinationVC = ImageRippleTransitionViewController(title: title)
+        case let str where str.localizedStandardContains("tinder"):
+            destinationVC = TinderLikeViewController(title: title)
         case let str where str.localizedStandardContains("Carousel collectionView"):
             destinationVC = CarouselViewController(title: title)
         case let str where str.localizedStandardContains("3D stacked"):
             destinationVC = StackedItemsViewController(title: title)
+        case let str where str.localizedStandardContains("Hover"):
+            destinationVC = HoverAnimatedGradientBorderViewController(title: title)
         case let str where str.localizedStandardContains("3D Card Carousel"):
             destinationVC = CardCarousel3DViewController(title: title)
         case let str where str.localizedStandardContains("tabbar"):
@@ -150,6 +159,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .flash)
         case let str where str.localizedStandardContains("swipe"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .swipe)
+        case let str where str.localizedStandardContains("robot"):
+            destinationVC = InteractiveRobotViewController(title: title)
         default: break
         }
         

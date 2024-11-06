@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F2583C7F2CDB46E000C63C64 /* InteractiveRobotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2583C7E2CDB46E000C63C64 /* InteractiveRobotViewController.swift */; };
+		F2583C812CDB49A200C63C64 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = F2583C802CDB49A200C63C64 /* art.scnassets */; };
+		F26EF1182CD90B0A00219B1E /* HoverAnimatedGradientBorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26EF1172CD90B0A00219B1E /* HoverAnimatedGradientBorderViewController.swift */; };
 		F27980C52CCBCD5900AFD849 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980C42CCBCD5900AFD849 /* ItemCell.swift */; };
 		F27980C72CCBCF6100AFD849 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980C62CCBCF6100AFD849 /* UIColor+Extension.swift */; };
 		F27980C92CCBD0E400AFD849 /* CarouselViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980C82CCBD0E400AFD849 /* CarouselViewCell.swift */; };
@@ -34,9 +37,13 @@
 		F2C984C92CC92C16005D90F6 /* StackedItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C984C82CC92C16005D90F6 /* StackedItemsViewController.swift */; };
 		F2F2135C2CCF7CBB00D646DA /* CardCarousel3DViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F2135B2CCF7CBA00D646DA /* CardCarousel3DViewController.swift */; };
 		F2F2135F2CCF855300D646DA /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F2135E2CCF855300D646DA /* CGFloat+Extension.swift */; };
+		F2F213612CCF8F6800D646DA /* TinderLikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F213602CCF8F6800D646DA /* TinderLikeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F2583C7E2CDB46E000C63C64 /* InteractiveRobotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveRobotViewController.swift; sourceTree = "<group>"; };
+		F2583C802CDB49A200C63C64 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		F26EF1172CD90B0A00219B1E /* HoverAnimatedGradientBorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverAnimatedGradientBorderViewController.swift; sourceTree = "<group>"; };
 		F27980C42CCBCD5900AFD849 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		F27980C62CCBCF6100AFD849 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		F27980C82CCBD0E400AFD849 /* CarouselViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewCell.swift; sourceTree = "<group>"; };
@@ -66,6 +73,7 @@
 		F2C984C82CC92C16005D90F6 /* StackedItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedItemsViewController.swift; sourceTree = "<group>"; };
 		F2F2135B2CCF7CBA00D646DA /* CardCarousel3DViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCarousel3DViewController.swift; sourceTree = "<group>"; };
 		F2F2135E2CCF855300D646DA /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
+		F2F213602CCF8F6800D646DA /* TinderLikeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinderLikeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +87,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F2583C7D2CDB46AD00C63C64 /* ArInteractiveRobotViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2583C7E2CDB46E000C63C64 /* InteractiveRobotViewController.swift */,
+			);
+			path = ArInteractiveRobotViewController;
+			sourceTree = "<group>";
+		};
+		F26EF1162CD90AE600219B1E /* HoverAnimatedGradientBorderViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F26EF1172CD90B0A00219B1E /* HoverAnimatedGradientBorderViewController.swift */,
+			);
+			path = HoverAnimatedGradientBorderViewController;
+			sourceTree = "<group>";
+		};
 		F27980CC2CCBE5FE00AFD849 /* CustomTabbarViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				F2C984B92CC9198C005D90F6 /* Assets.xcassets */,
+				F2583C802CDB49A200C63C64 /* art.scnassets */,
 				F2C984BB2CC9198C005D90F6 /* LaunchScreen.storyboard */,
 				F2C984BE2CC9198C005D90F6 /* Info.plist */,
 			);
@@ -239,11 +264,14 @@
 				F2BEED112CCA74B700AA22C3 /* BaseViewController */,
 				F2AD51AC2CC9AA350081BDE1 /* MainViewController */,
 				F2BEECFF2CCA3F5100AA22C3 /* ViewControllerTransitions */,
+				F26EF1162CD90AE600219B1E /* HoverAnimatedGradientBorderViewController */,
 				F2AD51A22CC9667C0081BDE1 /* ImageRippleTransitionViewController */,
 				F2F2135D2CCF7D7B00D646DA /* CardCarousel3DViewController */,
 				F2C984C62CC92BE0005D90F6 /* CarouselViewController */,
 				F2C984C72CC92BF9005D90F6 /* StackedViewController */,
 				F27980CC2CCBE5FE00AFD849 /* CustomTabbarViewController */,
+				F2F213622CCF904700D646DA /* TinderLikeViewController */,
+				F2583C7D2CDB46AD00C63C64 /* ArInteractiveRobotViewController */,
 			);
 			path = UIKitAnimations;
 			sourceTree = "<group>";
@@ -272,6 +300,14 @@
 				F2F2135B2CCF7CBA00D646DA /* CardCarousel3DViewController.swift */,
 			);
 			path = CardCarousel3DViewController;
+			sourceTree = "<group>";
+		};
+		F2F213622CCF904700D646DA /* TinderLikeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2F213602CCF8F6800D646DA /* TinderLikeViewController.swift */,
+			);
+			path = TinderLikeViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2C984BD2CC9198C005D90F6 /* LaunchScreen.storyboard in Resources */,
+				F2583C812CDB49A200C63C64 /* art.scnassets in Resources */,
 				F2C984BA2CC9198C005D90F6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,7 +396,10 @@
 				F2BEED0F2CCA629400AA22C3 /* FlashEffectTransition.swift in Sources */,
 				F2AD51A42CC966900081BDE1 /* ImageRippleTransitionViewController.swift in Sources */,
 				F27980CE2CCBE61C00AFD849 /* CustomTabbarViewController.swift in Sources */,
+				F26EF1182CD90B0A00219B1E /* HoverAnimatedGradientBorderViewController.swift in Sources */,
+				F2F213612CCF8F6800D646DA /* TinderLikeViewController.swift in Sources */,
 				F2C984C92CC92C16005D90F6 /* StackedItemsViewController.swift in Sources */,
+				F2583C7F2CDB46E000C63C64 /* InteractiveRobotViewController.swift in Sources */,
 				F2BEED0D2CCA4D3500AA22C3 /* ModEffectTransition.swift in Sources */,
 				F2BEED052CCA48E000AA22C3 /* CopyMachineTransitionEffect.swift in Sources */,
 				F27980C92CCBD0E400AFD849 /* CarouselViewCell.swift in Sources */,
