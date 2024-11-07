@@ -52,7 +52,8 @@ class MainViewController: BaseViewController {
             "Swipe"
         ]),
         .init(title: "Ar Models", items: [
-            "Interactive Robot"
+            "Interactive Robot",
+            "Talking Head"
         ])
     ]
     private let preferredCellHeight: CGFloat = 78.0
@@ -161,6 +162,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .swipe)
         case let str where str.localizedStandardContains("robot"):
             destinationVC = InteractiveRobotViewController(title: title)
+        case let str where str.localizedStandardContains("talking"):
+            destinationVC = TalkingHeadViewController(title: title)
         default: break
         }
         

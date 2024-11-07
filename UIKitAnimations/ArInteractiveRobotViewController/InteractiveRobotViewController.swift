@@ -9,12 +9,13 @@ import UIKit
 import SceneKit
 import AVFoundation
 
-class InteractiveRobotViewController: UIViewController {
+class InteractiveRobotViewController: BaseViewController {
     
     var sceneView: SCNView!
     let speechSynthesizer = AVSpeechSynthesizer() // Konuşma için synthesizer
     var modelNode: SCNNode?
-    var faceNode: SCNNode? // Yüz kısmı için özel node (bunu modelinizin yüzüyle değiştirebilirsiniz)
+    var faceNode: SCNNode?
+    var armNode: SCNNode?
     var animationPlayer: SCNAnimationPlayer? = nil
     
     init(title: String) {
@@ -28,7 +29,8 @@ class InteractiveRobotViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .appLightGray
+        configureNavigationBar()
         // Create SCNView
         sceneView = SCNView(frame: self.view.frame)
         self.view.addSubview(sceneView)
@@ -59,7 +61,14 @@ class InteractiveRobotViewController: UIViewController {
         // Modeli konuştur ve yüz animasyonunu başlat
         speakText("Merhaba! Ben bir 3D modelim, şimdi kafamı şişiriyorum.")
         animateFace()
+        animateLeftArm()
     }
+    
+    private func configureNavigationBar() {
+        tintColor = .black
+        hasBackButton = true
+    }
+    
     func add3DModel() {
         // Load model file from the bundle
         
@@ -86,6 +95,7 @@ class InteractiveRobotViewController: UIViewController {
             sceneView.scene?.rootNode.addChildNode(modelNode)
             // For example get head node to play with it
             faceNode = modelNode.childNode(withName: "mixamorig_Head", recursively: true)
+            armNode = modelNode.childNode(withName: "mixamorig_LeftArm", recursively: true)
         }
         
         printNodeNames()
@@ -128,5 +138,14 @@ class InteractiveRobotViewController: UIViewController {
         
         let repeatBlinkAction = SCNAction.repeatForever(blinkAction)
         faceNode.runAction(repeatBlinkAction)
+    }
+    
+    func animateLeftArm() {
+        guard let armNode else { return }
+    
+        let moveAction = SCNAction.sequence([
+            SCNAction.moveBy(x: 0, y: 0, z: 300, duration: 0.5)
+        ])
+        armNode.runAction(moveAction)
     }
 }

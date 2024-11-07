@@ -35,9 +35,18 @@
 		F2C984BD2CC9198C005D90F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2C984BB2CC9198C005D90F6 /* LaunchScreen.storyboard */; };
 		F2C984C52CC91FC0005D90F6 /* CarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C984C42CC91FC0005D90F6 /* CarouselFlowLayout.swift */; };
 		F2C984C92CC92C16005D90F6 /* StackedItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C984C82CC92C16005D90F6 /* StackedItemsViewController.swift */; };
+		F2CE38F82CDC9DBB002D3E8E /* TalkingHead.json in Resources */ = {isa = PBXBuildFile; fileRef = F2CE38F72CDC9DBB002D3E8E /* TalkingHead.json */; };
+		F2CE38FB2CDC9E11002D3E8E /* TalkingHeadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CE38FA2CDC9E11002D3E8E /* TalkingHeadViewController.swift */; };
+		F2CE38FE2CDCA044002D3E8E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F2CE38FD2CDCA044002D3E8E /* Lottie */; };
+		F2CE39002CDCA36D002D3E8E /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CE38FF2CDCA36D002D3E8E /* UITextField+Extension.swift */; };
+		F2CE39042CDCB0CD002D3E8E /* TalkingHeadWaiting.json in Resources */ = {isa = PBXBuildFile; fileRef = F2CE39012CDCB0CD002D3E8E /* TalkingHeadWaiting.json */; };
+		F2CE39052CDCB0CD002D3E8E /* TalkingHeadConfuse.json in Resources */ = {isa = PBXBuildFile; fileRef = F2CE39022CDCB0CD002D3E8E /* TalkingHeadConfuse.json */; };
+		F2CE39062CDCB0CD002D3E8E /* TalkingHeadIdle.json in Resources */ = {isa = PBXBuildFile; fileRef = F2CE39032CDCB0CD002D3E8E /* TalkingHeadIdle.json */; };
 		F2F2135C2CCF7CBB00D646DA /* CardCarousel3DViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F2135B2CCF7CBA00D646DA /* CardCarousel3DViewController.swift */; };
 		F2F2135F2CCF855300D646DA /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F2135E2CCF855300D646DA /* CGFloat+Extension.swift */; };
 		F2F213612CCF8F6800D646DA /* TinderLikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F213602CCF8F6800D646DA /* TinderLikeViewController.swift */; };
+		F2F505542CDCE60500AFEB19 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F505532CDCE60500AFEB19 /* MessageCell.swift */; };
+		F2F505562CDCEAE100AFEB19 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F505552CDCEAE100AFEB19 /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,9 +80,17 @@
 		F2C984BE2CC9198C005D90F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2C984C42CC91FC0005D90F6 /* CarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselFlowLayout.swift; sourceTree = "<group>"; };
 		F2C984C82CC92C16005D90F6 /* StackedItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedItemsViewController.swift; sourceTree = "<group>"; };
+		F2CE38F72CDC9DBB002D3E8E /* TalkingHead.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TalkingHead.json; sourceTree = "<group>"; };
+		F2CE38FA2CDC9E11002D3E8E /* TalkingHeadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkingHeadViewController.swift; sourceTree = "<group>"; };
+		F2CE38FF2CDCA36D002D3E8E /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		F2CE39012CDCB0CD002D3E8E /* TalkingHeadWaiting.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TalkingHeadWaiting.json; sourceTree = "<group>"; };
+		F2CE39022CDCB0CD002D3E8E /* TalkingHeadConfuse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TalkingHeadConfuse.json; sourceTree = "<group>"; };
+		F2CE39032CDCB0CD002D3E8E /* TalkingHeadIdle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TalkingHeadIdle.json; sourceTree = "<group>"; };
 		F2F2135B2CCF7CBA00D646DA /* CardCarousel3DViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCarousel3DViewController.swift; sourceTree = "<group>"; };
 		F2F2135E2CCF855300D646DA /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
 		F2F213602CCF8F6800D646DA /* TinderLikeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinderLikeViewController.swift; sourceTree = "<group>"; };
+		F2F505532CDCE60500AFEB19 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		F2F505552CDCEAE100AFEB19 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2CE38FE2CDCA044002D3E8E /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +157,7 @@
 		F2AD51A62CC993D20081BDE1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F2CE38F62CDC9D93002D3E8E /* Lottie Animations */,
 				F2C984B92CC9198C005D90F6 /* Assets.xcassets */,
 				F2583C802CDB49A200C63C64 /* art.scnassets */,
 				F2C984BB2CC9198C005D90F6 /* LaunchScreen.storyboard */,
@@ -203,6 +222,7 @@
 				F27980C62CCBCF6100AFD849 /* UIColor+Extension.swift */,
 				F27980CA2CCBDED900AFD849 /* UIModalTransitionStyle+Extension.swift */,
 				F2F2135E2CCF855300D646DA /* CGFloat+Extension.swift */,
+				F2CE38FF2CDCA36D002D3E8E /* UITextField+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -272,6 +292,7 @@
 				F27980CC2CCBE5FE00AFD849 /* CustomTabbarViewController */,
 				F2F213622CCF904700D646DA /* TinderLikeViewController */,
 				F2583C7D2CDB46AD00C63C64 /* ArInteractiveRobotViewController */,
+				F2CE38F92CDC9DD5002D3E8E /* TalkingHeadViewController */,
 			);
 			path = UIKitAnimations;
 			sourceTree = "<group>";
@@ -292,6 +313,27 @@
 				F2C984C82CC92C16005D90F6 /* StackedItemsViewController.swift */,
 			);
 			path = StackedViewController;
+			sourceTree = "<group>";
+		};
+		F2CE38F62CDC9D93002D3E8E /* Lottie Animations */ = {
+			isa = PBXGroup;
+			children = (
+				F2CE38F72CDC9DBB002D3E8E /* TalkingHead.json */,
+				F2CE39022CDCB0CD002D3E8E /* TalkingHeadConfuse.json */,
+				F2CE39032CDCB0CD002D3E8E /* TalkingHeadIdle.json */,
+				F2CE39012CDCB0CD002D3E8E /* TalkingHeadWaiting.json */,
+			);
+			path = "Lottie Animations";
+			sourceTree = "<group>";
+		};
+		F2CE38F92CDC9DD5002D3E8E /* TalkingHeadViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2CE38FA2CDC9E11002D3E8E /* TalkingHeadViewController.swift */,
+				F2F505532CDCE60500AFEB19 /* MessageCell.swift */,
+				F2F505552CDCEAE100AFEB19 /* Message.swift */,
+			);
+			path = TalkingHeadViewController;
 			sourceTree = "<group>";
 		};
 		F2F2135D2CCF7D7B00D646DA /* CardCarousel3DViewController */ = {
@@ -326,6 +368,9 @@
 			dependencies = (
 			);
 			name = UIKitAnimations;
+			packageProductDependencies = (
+				F2CE38FD2CDCA044002D3E8E /* Lottie */,
+			);
 			productName = CarouselCollectionView;
 			productReference = F2C984AD2CC9198B005D90F6 /* UIKitAnimations.app */;
 			productType = "com.apple.product-type.application";
@@ -354,6 +399,9 @@
 				Base,
 			);
 			mainGroup = F2C984A42CC9198A005D90F6;
+			packageReferences = (
+				F2CE38FC2CDCA044002D3E8E /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = F2C984AE2CC9198B005D90F6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -368,9 +416,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2CE39052CDCB0CD002D3E8E /* TalkingHeadConfuse.json in Resources */,
+				F2CE39062CDCB0CD002D3E8E /* TalkingHeadIdle.json in Resources */,
+				F2CE38F82CDC9DBB002D3E8E /* TalkingHead.json in Resources */,
 				F2C984BD2CC9198C005D90F6 /* LaunchScreen.storyboard in Resources */,
 				F2583C812CDB49A200C63C64 /* art.scnassets in Resources */,
 				F2C984BA2CC9198C005D90F6 /* Assets.xcassets in Resources */,
+				F2CE39042CDCB0CD002D3E8E /* TalkingHeadWaiting.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,15 +434,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2BEECFE2CCA3E2D00AA22C3 /* BarsSwipeEffectTransition.swift in Sources */,
+				F2CE39002CDCA36D002D3E8E /* UITextField+Extension.swift in Sources */,
 				F27980C72CCBCF6100AFD849 /* UIColor+Extension.swift in Sources */,
 				F2BEED0A2CCA495500AA22C3 /* UIView+Extension.swift in Sources */,
 				F27980C52CCBCD5900AFD849 /* ItemCell.swift in Sources */,
 				F2F2135F2CCF855300D646DA /* CGFloat+Extension.swift in Sources */,
 				F27980D02CCBE64B00AFD849 /* AnimatedTabbar.swift in Sources */,
+				F2F505542CDCE60500AFEB19 /* MessageCell.swift in Sources */,
+				F2CE38FB2CDC9E11002D3E8E /* TalkingHeadViewController.swift in Sources */,
 				F2C984B52CC9198B005D90F6 /* CarouselViewController.swift in Sources */,
 				F2C984B12CC9198B005D90F6 /* AppDelegate.swift in Sources */,
 				F2BEED162CCA8A8700AA22C3 /* SwipeEffectTransition.swift in Sources */,
 				F2BEED082CCA493D00AA22C3 /* UIImage+Extension.swift in Sources */,
+				F2F505562CDCEAE100AFEB19 /* Message.swift in Sources */,
 				F2AD51A92CC996370081BDE1 /* RippleEffectTransition.swift in Sources */,
 				F27980CB2CCBDED900AFD849 /* UIModalTransitionStyle+Extension.swift in Sources */,
 				F2BEED0F2CCA629400AA22C3 /* FlashEffectTransition.swift in Sources */,
@@ -629,6 +685,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F2CE38FC2CDCA044002D3E8E /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F2CE38FD2CDCA044002D3E8E /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2CE38FC2CDCA044002D3E8E /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F2C984A52CC9198A005D90F6 /* Project object */;
 }
