@@ -161,7 +161,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         case let str where str.localizedStandardContains("swipe"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .swipe)
         case let str where str.localizedStandardContains("robot"):
-            destinationVC = InteractiveRobotViewController(title: title)
+//            destinationVC = InteractiveRobotViewController(title: title)
+            destinationVC = ModelTestViewController(title: title)
         case let str where str.localizedStandardContains("talking"):
             destinationVC = TalkingHeadViewController(title: title)
         default: break

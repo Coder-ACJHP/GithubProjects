@@ -16,6 +16,7 @@
 		F27980CB2CCBDED900AFD849 /* UIModalTransitionStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980CA2CCBDED900AFD849 /* UIModalTransitionStyle+Extension.swift */; };
 		F27980CE2CCBE61C00AFD849 /* CustomTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980CD2CCBE61C00AFD849 /* CustomTabbarViewController.swift */; };
 		F27980D02CCBE64B00AFD849 /* AnimatedTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980CF2CCBE64B00AFD849 /* AnimatedTabbar.swift */; };
+		F29A79362CE3674F004302CF /* ModelTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29A79352CE3674F004302CF /* ModelTestViewController.swift */; };
 		F2AD51A42CC966900081BDE1 /* ImageRippleTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD51A32CC966900081BDE1 /* ImageRippleTransitionViewController.swift */; };
 		F2AD51A92CC996370081BDE1 /* RippleEffectTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD51A82CC996370081BDE1 /* RippleEffectTransition.swift */; };
 		F2AD51AB2CC998180081BDE1 /* TransitionTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD51AA2CC998180081BDE1 /* TransitionTestViewController.swift */; };
@@ -59,6 +60,7 @@
 		F27980CA2CCBDED900AFD849 /* UIModalTransitionStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIModalTransitionStyle+Extension.swift"; sourceTree = "<group>"; };
 		F27980CD2CCBE61C00AFD849 /* CustomTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarViewController.swift; sourceTree = "<group>"; };
 		F27980CF2CCBE64B00AFD849 /* AnimatedTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTabbar.swift; sourceTree = "<group>"; };
+		F29A79352CE3674F004302CF /* ModelTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTestViewController.swift; sourceTree = "<group>"; };
 		F2AD51A32CC966900081BDE1 /* ImageRippleTransitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRippleTransitionViewController.swift; sourceTree = "<group>"; };
 		F2AD51A82CC996370081BDE1 /* RippleEffectTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleEffectTransition.swift; sourceTree = "<group>"; };
 		F2AD51AA2CC998180081BDE1 /* TransitionTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionTestViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				F2583C7E2CDB46E000C63C64 /* InteractiveRobotViewController.swift */,
+				F29A79352CE3674F004302CF /* ModelTestViewController.swift */,
 			);
 			path = ArInteractiveRobotViewController;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2BEECFE2CCA3E2D00AA22C3 /* BarsSwipeEffectTransition.swift in Sources */,
+				F29A79362CE3674F004302CF /* ModelTestViewController.swift in Sources */,
 				F2CE39002CDCA36D002D3E8E /* UITextField+Extension.swift in Sources */,
 				F27980C72CCBCF6100AFD849 /* UIColor+Extension.swift in Sources */,
 				F2BEED0A2CCA495500AA22C3 /* UIView+Extension.swift in Sources */,

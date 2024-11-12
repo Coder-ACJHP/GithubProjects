@@ -14,9 +14,13 @@ class InteractiveRobotViewController: BaseViewController {
     var sceneView: SCNView!
     let speechSynthesizer = AVSpeechSynthesizer() // Konuşma için synthesizer
     var modelNode: SCNNode?
-    var faceNode: SCNNode?
-    var armNode: SCNNode?
+    var model2Node: SCNNode?
+    var leftEye: SCNNode?
+    var rightEye: SCNNode?
+    var bodyNode: SCNNode?
+    var geomNode: SCNNode?
     var animationPlayer: SCNAnimationPlayer? = nil
+    var animations = [String: CAAnimation]()
     
     init(title: String) {
         super.init(nibName: nil, bundle: nil)
@@ -38,17 +42,18 @@ class InteractiveRobotViewController: BaseViewController {
         // Create scene and assign it to sceneView
         let scene = SCNScene()
         sceneView.scene = scene
-        sceneView.allowsCameraControl = true // Kamera kontrolünü etkinleştir (modeli döndürmek ve yakınlaştırmak için)
-        sceneView.backgroundColor = UIColor.gray // Arka plan rengi
+        sceneView.allowsCameraControl = false // Kamera kontrolünü etkinleştir (modeli döndürmek ve yakınlaştırmak için)
+        sceneView.backgroundColor = UIColor.black // Arka plan rengi
         sceneView.autoenablesDefaultLighting = true
         
         // Add 3D model here
         add3DModel()
         
-        // Add a camera
+        printNodeNamesRecursive(node: modelNode!)
+
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
-        cameraNode.position = SCNVector3(x: 0, y: 9, z: 20)
+        cameraNode.position = SCNVector3(x: 0, y: 9, z: 50)
         scene.rootNode.addChildNode(cameraNode)
     }
     
@@ -58,10 +63,9 @@ class InteractiveRobotViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // Modeli konuştur ve yüz animasyonunu başlat
-        speakText("Merhaba! Ben bir 3D modelim, şimdi kafamı şişiriyorum.")
-        animateFace()
-        animateLeftArm()
+
+        animateEyeBlink()
+        animateBodyLookAround()
     }
     
     private func configureNavigationBar() {
@@ -77,28 +81,61 @@ class InteractiveRobotViewController: BaseViewController {
 //            print("Model yüklenemedi.")
 //            return
 //        }
+//        
+//        guard let model2Scene = SCNScene(named: "art.scnassets/Talking_2.usdz") else {
+//            print("Model yüklenemedi.")
+//            return
+//        }
+
+//        modelNode = modelScene.rootNode
+//        modelNode?.position = SCNVector3(0, 0, 0)
+//        modelNode?.scale = SCNVector3(0.1, 0.1, 0.1) // Model boyutunu ayarla
+//        modelNode?.opacity = 1.0
+//        sceneView.scene?.rootNode.addChildNode(modelNode!)
+//        
+//        
+//        model2Node = model2Scene.rootNode
+//        model2Node?.position = SCNVector3(0, 0, 0)
+//        model2Node?.scale = SCNVector3(0.1, 0.1, 0.1)
+//        model2Node?.opacity = 0.0
+//        sceneView.scene?.rootNode.addChildNode(model2Node!)
         
-        // Load with animation policy
-        guard let modelURL = Bundle.main.url(forResource: "art.scnassets/Talking", withExtension: "usdz"),
-              let modelScene = try? SCNScene(url: modelURL, options: [.animationImportPolicy : SCNSceneSource.AnimationImportPolicy.playUsingSceneTimeBase ]) else {
-            print("Model yüklenemedi.")
-            return
+        guard let scene = SCNScene(named: "art.scnassets/riggedFaceScn.scn") else {
+            return print("Model yüklenemedi.")
         }
-        
-        // Get root node and adjust it's position and scale
-        modelNode = modelScene.rootNode
+        modelNode = scene.rootNode.clone()
         modelNode?.position = SCNVector3(0, 0, 0)
-        modelNode?.scale = SCNVector3(0.1, 0.1, 0.1) // Model boyutunu ayarla
+        modelNode?.scale = SCNVector3(0.1, 0.1, 0.1)
+        sceneView.scene?.rootNode.addChildNode(modelNode!)
         
-        // Add model to scene
-        if let modelNode = modelNode {
-            sceneView.scene?.rootNode.addChildNode(modelNode)
-            // For example get head node to play with it
-            faceNode = modelNode.childNode(withName: "mixamorig_Head", recursively: true)
-            armNode = modelNode.childNode(withName: "mixamorig_LeftArm", recursively: true)
+        bodyNode = modelNode?.childNode(withName: "riggedFace", recursively: true)
+        leftEye = modelNode?.childNode(withName: "Eye1", recursively: true)
+        rightEye = modelNode?.childNode(withName: "Eye2", recursively: true)
+        geomNode = modelNode?.childNode(withName: "Body", recursively: true)
+        
+        if let material = geomNode?.geometry?.firstMaterial {
+            material.diffuse.contents = UIColor.red // Change to red color
         }
-        
-        printNodeNames()
+    }
+    
+    func playAnimation(key: String) {
+        guard animations.isEmpty == false else { return print("No animations") }
+        sceneView.scene?.rootNode.addAnimation(animations[key]!, forKey: key)
+    }
+    
+    func loadAnimation(withKey: String, sceneName: String, animationIdentifier: String) {
+
+        let sceneURL = Bundle.main.url(forResource: sceneName, withExtension: "dae")
+        let sceneSource = SCNSceneSource(url: sceneURL!, options: nil)
+
+        if let animationObj = sceneSource?.entryWithIdentifier(animationIdentifier,
+                                                     withClass: CAAnimation.self) {
+            animationObj.repeatCount = 1
+            animationObj.fadeInDuration = CGFloat(1)
+            animationObj.fadeOutDuration = CGFloat(0.5)
+
+            animations[withKey] = animationObj
+        }
     }
     
     func speakText(_ text: String) {
@@ -111,7 +148,7 @@ class InteractiveRobotViewController: BaseViewController {
         speechSynthesizer.speak(utterance)
     }
     
-    func printNodeNames() {
+    func printNodeNames(forNode modelNode: SCNNode?) {
         guard let modelNode = modelNode else { return }
         
         printNodeNamesRecursive(node: modelNode)
@@ -128,24 +165,80 @@ class InteractiveRobotViewController: BaseViewController {
     }
     
     // Start head animation (shrink auto reverse)
-    func animateFace() {
-        guard let faceNode = faceNode else { return }
-    
+    func animateEyeBlink() {
+        guard let leftEye, let rightEye else { return }
+        leftEye.pivot = SCNMatrix4MakeTranslation(0, -1, 0)
+        leftEye.pivot = SCNMatrix4MakeTranslation(0, -1, 0)
+        
+        let closeEyes = SCNAction.scale(to: 0.6, duration: 0.5)
+        closeEyes.timingMode = .easeIn
+        
+        let openEyes = SCNAction.scale(to: 1.0, duration: 0.5)
+        openEyes.timingMode = .easeOut
+            
         let blinkAction = SCNAction.sequence([
-            SCNAction.scale(to: 0.9, duration: 0.1),
-            SCNAction.scale(to: 1.0, duration: 0.1)
+            closeEyes,
+            openEyes,
+            closeEyes,
+            openEyes
         ])
         
-        let repeatBlinkAction = SCNAction.repeatForever(blinkAction)
-        faceNode.runAction(repeatBlinkAction)
+        let delayAction = SCNAction.wait(duration: 3.0)
+        let blinkSequence = SCNAction.sequence([blinkAction, delayAction])
+        let repeatBlinkAction = SCNAction.repeatForever(blinkSequence)
+        repeatBlinkAction.timingMode = .easeInEaseOut
+        leftEye.runAction(repeatBlinkAction)
+        rightEye.runAction(repeatBlinkAction)
     }
     
-    func animateLeftArm() {
-        guard let armNode else { return }
-    
-        let moveAction = SCNAction.sequence([
-            SCNAction.moveBy(x: 0, y: 0, z: 300, duration: 0.5)
+    func animateBodyLookAround() {
+        guard let bodyNode else { return }
+        
+        // Define smoother, more subtle rotation actions for idle "look around"
+        let lookLeft = SCNAction.rotateBy(x: 0, y: .pi / 12, z: 0, duration: 1.2)  // Subtle look left
+        lookLeft.timingMode = .easeInEaseOut
+        
+        let lookRight = SCNAction.rotateBy(x: 0, y: -.pi / 8, z: 0, duration: 1.4) // Subtle look right
+        lookRight.timingMode = .easeInEaseOut
+        
+        let lookDown = SCNAction.rotateBy(x: .pi / 20, y: 0, z: 0, duration: 1.2)   // Subtle tilt up
+        lookDown.timingMode = .easeInEaseOut
+        
+        let lookUp = SCNAction.rotateBy(x: -.pi / 20, y: 0, z: 0, duration: 1.2)  // Subtle tilt down
+        lookUp.timingMode = .easeInEaseOut
+        
+        // Slight forward tilt to make it appear as a more relaxed posture
+        let slightForwardTilt = SCNAction.rotateBy(x: .pi / 40, y: 0, z: 0, duration: 1.2)
+        slightForwardTilt.timingMode = .easeInEaseOut
+        
+        // Return to a neutral, forward-looking position
+        let resetPosition = SCNAction.rotateTo(x: 0, y: 0, z: 0, duration: 1.2)
+        resetPosition.timingMode = .easeInEaseOut
+        
+        // Sequence of movements with varied pauses for natural feel
+        let lookSequence = SCNAction.sequence([
+            slightForwardTilt,
+            SCNAction.wait(duration: 1.0),
+            lookLeft,
+            SCNAction.wait(duration: 0.6),
+            lookRight,
+            SCNAction.wait(duration: 0.8),
+            resetPosition,
+            SCNAction.wait(duration: 0.5),
+            lookDown,
+            SCNAction.wait(duration: 0.7),
+            lookDown,
+            SCNAction.wait(duration: 0.9),
+            resetPosition,
+            SCNAction.wait(duration: 5.0)  // Longer pause at neutral position to simulate idle state
         ])
-        armNode.runAction(moveAction)
+        
+        // Repeat the sequence indefinitely for idle animation
+        let repeatLookAround = SCNAction.repeatForever(lookSequence)
+        
+        // Run the action on the body node
+        bodyNode.runAction(repeatLookAround)
     }
+
+
 }
