@@ -35,11 +35,11 @@ class MainViewController: BaseViewController {
         .init(title: "Animations", items: [
             "Ripple On Images",
             "Tinder Like",
-            "Hover Gradient Border"
+            "3D Parallax Card"
         ]),
         .init(title: "Custom Components", items: [
-            "Carousel CollectionView",
-            "3D Card Carousel",
+            "Zoom Center Cell",
+            "3D Image Cards",
             "3D Stacked Items",
             "Custom Tabbar"
         ]),
@@ -51,9 +51,11 @@ class MainViewController: BaseViewController {
             "Flash",
             "Swipe"
         ]),
-        .init(title: "Ar Models", items: [
-            "Interactive Robot",
-            "Talking Head"
+        .init(title: "SceneKit", items: [
+            "3D Model Talking",
+        ]),
+        .init(title: "Lottie", items: [
+            "2D Model Talking"
         ])
     ]
     private let preferredCellHeight: CGFloat = 78.0
@@ -72,7 +74,7 @@ class MainViewController: BaseViewController {
     }
     
     private func configureNavigationBar() {
-        title = "UIKit Animations"
+        title = "Animations"
         tintColor = .black
         hasBackButton = false
     }
@@ -131,39 +133,38 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let title = sections[indexPath.section].items[indexPath.row]
-        
+        print(title)
         var destinationVC: UIViewController?
         switch title.lowercased() {
-        case let str where str.localizedStandardContains("on images"):
+        case let str where str.contains("on images"):
             destinationVC = ImageRippleTransitionViewController(title: title)
-        case let str where str.localizedStandardContains("tinder"):
+        case let str where str.contains("tinder"):
             destinationVC = TinderLikeViewController(title: title)
-        case let str where str.localizedStandardContains("Carousel collectionView"):
+        case let str where str.contains("zoom center cell"):
             destinationVC = CarouselViewController(title: title)
-        case let str where str.localizedStandardContains("3D stacked"):
+        case let str where str.contains("3d stacked items"):
             destinationVC = StackedItemsViewController(title: title)
-        case let str where str.localizedStandardContains("Hover"):
-            destinationVC = HoverAnimatedGradientBorderViewController(title: title)
-        case let str where str.localizedStandardContains("3D Card Carousel"):
+        case let str where str.contains("3d parallax card"):
+            destinationVC = Parallax3DCardEffectViewController(title: title)
+        case let str where str.contains("3d image cards"):
             destinationVC = CardCarousel3DViewController(title: title)
-        case let str where str.localizedStandardContains("tabbar"):
+        case let str where str.contains("custom tabbar"):
             destinationVC = CustomTabbarViewController(title: title)
-        case let str where str.localizedStandardContains("ripple"):
+        case let str where str.contains("ripple"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .ripple)
-        case let str where str.localizedStandardContains("bar"):
+        case let str where str.contains("bar"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .barSwipe)
-        case let str where str.localizedStandardContains("copy"):
+        case let str where str.contains("copy"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .copyMachine)
-        case let str where str.localizedStandardContains("mod"):
+        case let str where str.contains("Mod"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .mod)
-        case let str where str.localizedStandardContains("flash"):
+        case let str where str.contains("flash"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .flash)
-        case let str where str.localizedStandardContains("swipe"):
+        case let str where str.contains("swipe"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .swipe)
-        case let str where str.localizedStandardContains("robot"):
-//            destinationVC = InteractiveRobotViewController(title: title)
+        case let str where str.contains("3d model talking"):
             destinationVC = ModelTestViewController(title: title)
-        case let str where str.localizedStandardContains("talking"):
+        case let str where str.contains("2d model talking"):
             destinationVC = TalkingHeadViewController(title: title)
         default: break
         }

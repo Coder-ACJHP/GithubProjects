@@ -22,10 +22,10 @@ class TalkingHeadViewController: BaseViewController, AVSpeechSynthesizerDelegate
     private var animationViewHeightMultiplier: CGFloat = 0.35
     private var isFromUser = true
     private let greetingMessage = """
-    Merhaba! Ben yeni asistanın Mr.VocaRise, bana ingilizce hakkında istediğini sorabilirsin.
+    Merhaba! Ben yeni asistanın Mr.Assistant, bana ingilizce hakkında istediğini sorabilirsin.
     """
     
-    private let speechSynthesizer = AVSpeechSynthesizer() // Konuşma için synthesizer
+    private let speechSynthesizer = AVSpeechSynthesizer()
     private var isKeyboardVisible = false
     
     private var messagesTableView: UITableView! // Mesajları gösterecek UITableView
@@ -138,6 +138,18 @@ class TalkingHeadViewController: BaseViewController, AVSpeechSynthesizerDelegate
         ).cgPath
         // Update gradient layer frame
         updateGradientLayerFrame()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        speechSynthesizer.stopSpeaking(at: .immediate)
+        listeningAnimationView?.stop()
+        idleAnimationView?.stop()
+        typingAnimationView?.stop()
+        typingALotAnimationView?.stop()
+        animationToShow?.stop()
+        
     }
     
     private func configureNavigationBar() {

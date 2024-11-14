@@ -10,9 +10,8 @@
 		F21E5C9C2CE602CB00611347 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E5C9B2CE602CB00611347 /* Character.swift */; };
 		F21E5C9F2CE6271200611347 /* ModelTestViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E5C9E2CE6271200611347 /* ModelTestViewController+Extensions.swift */; };
 		F21E5CA22CE6356500611347 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E5CA12CE6356500611347 /* String+Extension.swift */; };
-		F2583C7F2CDB46E000C63C64 /* InteractiveRobotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2583C7E2CDB46E000C63C64 /* InteractiveRobotViewController.swift */; };
 		F2583C812CDB49A200C63C64 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = F2583C802CDB49A200C63C64 /* art.scnassets */; };
-		F26EF1182CD90B0A00219B1E /* HoverAnimatedGradientBorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26EF1172CD90B0A00219B1E /* HoverAnimatedGradientBorderViewController.swift */; };
+		F26EF1182CD90B0A00219B1E /* Parallax3DCardEffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26EF1172CD90B0A00219B1E /* Parallax3DCardEffectViewController.swift */; };
 		F27980C52CCBCD5900AFD849 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980C42CCBCD5900AFD849 /* ItemCell.swift */; };
 		F27980C72CCBCF6100AFD849 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980C62CCBCF6100AFD849 /* UIColor+Extension.swift */; };
 		F27980C92CCBD0E400AFD849 /* CarouselViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980C82CCBD0E400AFD849 /* CarouselViewCell.swift */; };
@@ -57,9 +56,8 @@
 		F21E5C9B2CE602CB00611347 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		F21E5C9E2CE6271200611347 /* ModelTestViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelTestViewController+Extensions.swift"; sourceTree = "<group>"; };
 		F21E5CA12CE6356500611347 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		F2583C7E2CDB46E000C63C64 /* InteractiveRobotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveRobotViewController.swift; sourceTree = "<group>"; };
 		F2583C802CDB49A200C63C64 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		F26EF1172CD90B0A00219B1E /* HoverAnimatedGradientBorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverAnimatedGradientBorderViewController.swift; sourceTree = "<group>"; };
+		F26EF1172CD90B0A00219B1E /* Parallax3DCardEffectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parallax3DCardEffectViewController.swift; sourceTree = "<group>"; };
 		F27980C42CCBCD5900AFD849 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		F27980C62CCBCF6100AFD849 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		F27980C82CCBD0E400AFD849 /* CarouselViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewCell.swift; sourceTree = "<group>"; };
@@ -123,29 +121,20 @@
 			path = ModelTestViewController;
 			sourceTree = "<group>";
 		};
-		F21E5CA02CE6282200611347 /* DancingRobotViewController */ = {
-			isa = PBXGroup;
-			children = (
-				F2583C7E2CDB46E000C63C64 /* InteractiveRobotViewController.swift */,
-			);
-			path = DancingRobotViewController;
-			sourceTree = "<group>";
-		};
 		F2583C7D2CDB46AD00C63C64 /* ArInteractiveRobotViewController */ = {
 			isa = PBXGroup;
 			children = (
 				F21E5C9D2CE626F900611347 /* ModelTestViewController */,
-				F21E5CA02CE6282200611347 /* DancingRobotViewController */,
 			);
 			path = ArInteractiveRobotViewController;
 			sourceTree = "<group>";
 		};
-		F26EF1162CD90AE600219B1E /* HoverAnimatedGradientBorderViewController */ = {
+		F26EF1162CD90AE600219B1E /* Parallax3DCardEffectViewController */ = {
 			isa = PBXGroup;
 			children = (
-				F26EF1172CD90B0A00219B1E /* HoverAnimatedGradientBorderViewController.swift */,
+				F26EF1172CD90B0A00219B1E /* Parallax3DCardEffectViewController.swift */,
 			);
-			path = HoverAnimatedGradientBorderViewController;
+			path = Parallax3DCardEffectViewController;
 			sourceTree = "<group>";
 		};
 		F27980CC2CCBE5FE00AFD849 /* CustomTabbarViewController */ = {
@@ -312,7 +301,7 @@
 				F2BEED112CCA74B700AA22C3 /* BaseViewController */,
 				F2AD51AC2CC9AA350081BDE1 /* MainViewController */,
 				F2BEECFF2CCA3F5100AA22C3 /* ViewControllerTransitions */,
-				F26EF1162CD90AE600219B1E /* HoverAnimatedGradientBorderViewController */,
+				F26EF1162CD90AE600219B1E /* Parallax3DCardEffectViewController */,
 				F2AD51A22CC9667C0081BDE1 /* ImageRippleTransitionViewController */,
 				F2F2135D2CCF7D7B00D646DA /* CardCarousel3DViewController */,
 				F2C984C62CC92BE0005D90F6 /* CarouselViewController */,
@@ -483,10 +472,9 @@
 				F2BEED0F2CCA629400AA22C3 /* FlashEffectTransition.swift in Sources */,
 				F2AD51A42CC966900081BDE1 /* ImageRippleTransitionViewController.swift in Sources */,
 				F27980CE2CCBE61C00AFD849 /* CustomTabbarViewController.swift in Sources */,
-				F26EF1182CD90B0A00219B1E /* HoverAnimatedGradientBorderViewController.swift in Sources */,
+				F26EF1182CD90B0A00219B1E /* Parallax3DCardEffectViewController.swift in Sources */,
 				F2F213612CCF8F6800D646DA /* TinderLikeViewController.swift in Sources */,
 				F2C984C92CC92C16005D90F6 /* StackedItemsViewController.swift in Sources */,
-				F2583C7F2CDB46E000C63C64 /* InteractiveRobotViewController.swift in Sources */,
 				F2BEED0D2CCA4D3500AA22C3 /* ModEffectTransition.swift in Sources */,
 				F2BEED052CCA48E000AA22C3 /* CopyMachineTransitionEffect.swift in Sources */,
 				F21E5CA22CE6356500611347 /* String+Extension.swift in Sources */,
