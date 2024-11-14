@@ -1,180 +1,15 @@
 //
-//  ModelTestViewController.swift
+//  ModelTestViewController+Extensions.swift
 //  UIKitAnimations
 //
-//  Created by Coder ACJHP on 12.11.2024.
+//  Created by Coder ACJHP on 14.11.2024.
 //
 
-import UIKit
+import Foundation
 import SceneKit
+import NaturalLanguage
 
-class ModelTestViewController: BaseViewController {
-    
-    enum State {
-        case talking, idle, none
-    }
-    
-    var sceneView: SCNView!
-    var modelRootNode: SCNNode?
-    
-    // Nodes
-    var jaw: SCNNode?
-    var jawOrigin: SCNVector3?
-    var eyes: SCNNode?
-    var eyesOrigin: SCNVector3?
-    var lipUpL: SCNNode?
-    var lipUpLOrigin: SCNVector3?
-    var lipUp: SCNNode?
-    var lipUpOrigin: SCNVector3?
-    var lipUpR: SCNNode?
-    var lipUpROrigin: SCNVector3?
-    var lipDownL: SCNNode?
-    var lipDownLOrigin: SCNVector3?
-    var lipDown: SCNNode?
-    var lipDownOrigin: SCNVector3?
-    var lipDownROrigin: SCNVector3?
-    var lipDownR: SCNNode?
-    var sideLipL: SCNNode?
-    var sideLipLOrigin: SCNVector3?
-    var sideLipR: SCNNode?
-    var sideLipROrigin: SCNVector3?    
-    var eyeLidUpR: SCNNode?
-    var eyeLidUpROrigin: SCNVector3?
-    var eyeLidUpL: SCNNode?
-    var eyeLidUpLOrigin: SCNVector3?
-    var eyeLidDownL: SCNNode?
-    var eyeLidDownLOrigin: SCNVector3?
-    var eyeLidDownR: SCNNode?
-    var eyeLidDownROrigin: SCNVector3?
-    // Head
-    var head: SCNNode?
-    var headOrigin: SCNVector3?
-    
-    // Timer
-    private var idleStateTimer: Timer?
-    private var currentState: State = .none {
-        didSet {
-            print("State: \(currentState)")
-        }
-    }
-    
-    init(title: String) {
-        super.init(nibName: nil, bundle: nil)
-        self.title = title
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .appLightGray
-        configureNavigationBar()
-        configureSceneView()
-        configure3Dmodel(named: "handsomeGuy.scn")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-//            guard let self else { return }
-//            startIdleStateAnimation()
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                self.animateTalking()
-//            }
-//        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.animateTalking()
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        resetBlinkRandomizeTimer()
-    }
-    
-    private func configureNavigationBar() {
-        tintColor = .black
-        hasBackButton = true
-    }
-    
-    private func configureSceneView() {
-        sceneView = SCNView(frame: self.view.frame)
-        self.view.addSubview(sceneView)
-        // Create scene and assign it to sceneView
-        let scene = SCNScene()
-        sceneView.scene = scene
-        sceneView.allowsCameraControl = false // Kamera kontrolünü etkinleştir (modeli döndürmek ve yakınlaştırmak için)
-        sceneView.backgroundColor = UIColor.black // Arka plan rengi
-        sceneView.autoenablesDefaultLighting = true
-        // Add camera to word
-        setupCamera(to: scene)
-    }
-    
-    private func configure3Dmodel(named: String) {
-        guard let scene = SCNScene(named: "art.scnassets/\(named)") else {
-            return print("Model yüklenemedi.")
-        }
-        modelRootNode = scene.rootNode.clone()
-        modelRootNode?.position = SCNVector3(0, 0, 0)
-        modelRootNode?.scale = SCNVector3(0.1, 0.1, 0.1)
-        sceneView.scene?.rootNode.addChildNode(modelRootNode!)
-        loadReuiredNodes(from: modelRootNode)
-    }
-    
-    private func setupCamera(to scene: SCNScene) {
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        cameraNode.position = SCNVector3(x: 0, y: 8, z: 90)
-        scene.rootNode.addChildNode(cameraNode)
-    }
-    
-    func loadReuiredNodes(from rootNode: SCNNode?) {
-        guard let characterNode = rootNode else { return  }
-        // Face Parts
-        // 1 - Jaw
-        jaw = characterNode.childNode(withName: "jaw", recursively: true)
-        jawOrigin = jaw?.position
-        // 2 - Eyes
-        eyes = characterNode.childNode(withName: "Eyes", recursively: true)
-        eyesOrigin = eyes?.position
-        // 3 - Lips
-        lipDown = characterNode.childNode(withName: "LipDown", recursively: true)
-        lipDownOrigin = lipDown?.position
-        lipDownR = characterNode.childNode(withName: "LipDown_R", recursively: true)
-        lipDownROrigin = lipDownR?.position
-        lipDownL = characterNode.childNode(withName: "LipDown_L", recursively: true)
-        lipDownLOrigin = lipDownL?.position
-        lipUp = characterNode.childNode(withName: "LipUp", recursively: true)
-        lipUpOrigin = lipUp?.position
-        lipUpR = characterNode.childNode(withName: "LipUp_R", recursively: true)
-        lipUpROrigin = lipUpR?.position
-        lipUpL = characterNode.childNode(withName: "LipUp_L", recursively: true)
-        lipUpLOrigin = lipUpL?.position
-        sideLipL = characterNode.childNode(withName: "SideLip_L", recursively: true)
-        sideLipLOrigin = sideLipL?.position
-        sideLipR = characterNode.childNode(withName: "SideLip_R", recursively: true)
-        sideLipROrigin = sideLipR?.position
-        // 4 - Eyelid
-        eyeLidUpL = characterNode.childNode(withName: "UpLid_L", recursively: true)
-        eyeLidUpLOrigin = eyeLidUpL?.position
-        eyeLidUpR = characterNode.childNode(withName: "UpLid_R", recursively: true)
-        eyeLidUpROrigin = eyeLidUpR?.position
-        eyeLidDownL = characterNode.childNode(withName: "DownLid_L", recursively: true)
-        eyeLidDownLOrigin = eyeLidDownL?.position
-        eyeLidDownR = characterNode.childNode(withName: "DownLid_R", recursively: true)
-        eyeLidDownROrigin = eyeLidDownR?.position
-        // 5 - Head
-        head = characterNode.childNode(withName: "head", recursively: true)
-        headOrigin = head?.position
-    }
+extension ModelTestViewController {
     
     // MARK: - Talking Animations
     
@@ -184,7 +19,7 @@ class ModelTestViewController: BaseViewController {
     }
 
     func animateJawClose(duration: TimeInterval) {
-        guard let jaw else { return }
+        guard let jaw = character.jaw else { return }
         let closeAction = SCNAction.move(to: SCNVector3(x: 0, y: -0.1, z: 0.0), duration: duration)
         jaw.runAction(closeAction)
     }
@@ -193,14 +28,14 @@ class ModelTestViewController: BaseViewController {
     func animateWiderMouth(duration: TimeInterval) {
         animateWideMouth(basePower: 0.03, duration: duration)
     }
-    /* 
+    /*
      Open mouth. This mouth shape is used for vowels like "EH" as in men and "AE" as in bat.
      It's also used for some consonants, depending on context.
     */
     func animateWideMouth(basePower power: Float = 0.02, duration: TimeInterval) {
-        guard let lipUpL, let lipUp, let lipUpR,
-              let lipDownL, let lipDown, let lipDownR,
-              let jaw
+        guard let lipUpL = character.lipUpL, let lipUp = character.lipUp, let lipUpR = character.lipUpR,
+              let lipDownL = character.lipDownL, let lipDown = character.lipDown, let lipDownR = character.lipDownR,
+              let jaw = character.jaw
         else {
             return print("Required lip nodes not found")
         }
@@ -263,10 +98,10 @@ class ModelTestViewController: BaseViewController {
      Make sure the mouth isn't wider open than for ©. Both ©©@ and O©© should result in smooth animation.
      */
     func animateRoundedMouth(duration: TimeInterval) {
-        guard let lipUpL, let lipUp, let lipUpR,
-              let lipDownL, let lipDown, let lipDownR,
-              let sideLipL, let sideLipR,
-              let jaw
+        guard let lipUpL = character.lipUpL, let lipUp = character.lipUp, let lipUpR = character.lipUpR,
+              let lipDownL = character.lipDownL, let lipDown = character.lipDown, let lipDownR = character.lipDownR,
+              let sideLipL = character.sideLipL, let sideLipR = character.sideLipR,
+              let jaw = character.jaw
         else {
             return print("Required lip nodes not found")
         }
@@ -339,16 +174,17 @@ class ModelTestViewController: BaseViewController {
         sideLipR.runAction(sideRightAction)
     }
     
-    private func resetMouthShape(duration: TimeInterval = 0.5) {
-        guard let lipUpL, let lipUp, let lipUpR,
-              let lipUpLOrigin, let lipUpOrigin, let lipUpROrigin,
-              let lipDownL, let lipDown, let lipDownR,
-              let lipDownLOrigin, let lipDownOrigin, let lipDownROrigin,
-              let sideLipL, let sideLipR,
-              let sideLipLOrigin, let sideLipROrigin
+    func resetMouthShape(duration: TimeInterval = 0.5) {
+        guard let lipUpL = character.lipUpL, let lipUp = character.lipUp, let lipUpR = character.lipUpR,
+              let lipUpLOrigin = character.lipUpLOrigin, let lipUpOrigin = character.lipUpOrigin, let lipUpROrigin = character.lipUpROrigin,
+              let lipDownL = character.lipDownL, let lipDown = character.lipDown, let lipDownR = character.lipDownR,
+              let lipDownLOrigin = character.lipDownLOrigin, let lipDownOrigin = character.lipDownOrigin, let lipDownROrigin = character.lipDownROrigin,
+              let sideLipL = character.sideLipL, let sideLipR = character.sideLipR,
+              let sideLipLOrigin = character.sideLipLOrigin, let sideLipROrigin = character.sideLipROrigin
         else {
             return print("Required lip nodes not found")
         }
+        
         let lipsList = [lipUpL, lipUp, lipUpR, lipDownL, lipDown, lipDownR, sideLipL, sideLipR]
         let lipsOriginList = [lipUpLOrigin, lipUpOrigin, lipUpROrigin, lipDownLOrigin, lipDownOrigin, lipDownROrigin, sideLipLOrigin, sideLipROrigin]
         for (index, node) in lipsList.enumerated() {
@@ -361,8 +197,8 @@ class ModelTestViewController: BaseViewController {
      identical to the @ shape, but there is ever-so-slight pressure between the lips.
      */
     func animateClosedMouth(duration: TimeInterval) {
-        guard let lipUpL, let lipUp, let lipUpR,
-              let lipDownL, let lipDown, let lipDownR
+        guard let lipUpL = character.lipUpL, let lipUp = character.lipUp, let lipUpR = character.lipUpR,
+              let lipDownL = character.lipDownL, let lipDown = character.lipDown, let lipDownR = character.lipDownR
         else {
             return print("Required lip nodes not found")
         }
@@ -418,15 +254,17 @@ class ModelTestViewController: BaseViewController {
     
     // MARK: - Blink animation
 
-    private func startBlinkEyes(duration: TimeInterval) {
+    func startBlinkEyes(duration: TimeInterval) {
         resetBlinkRandomizeTimer()
         createBlinkRandomizeTimer(blinkDuration: duration)
     }
     
     // Function to create a random blink sequence with 1 or 2 blinks
     func createRandomBlinkSequence(count: Int, duration: TimeInterval) -> (SCNAction, SCNAction, SCNAction, SCNAction) {
-        guard let eyeLidUpL, let eyeLidUpLOrigin, let eyeLidUpR, let eyeLidUpROrigin,
-              let eyeLidDownL, let eyeLidDownLOrigin, let eyeLidDownR, let eyeLidDownROrigin else {
+        guard let eyeLidUpL = character.eyeLidUpL, let eyeLidUpLOrigin = character.eyeLidUpLOrigin,
+              let eyeLidUpR = character.eyeLidUpR, let eyeLidUpROrigin = character.eyeLidUpROrigin,
+              let eyeLidDownL = character.eyeLidDownL, let eyeLidDownLOrigin = character.eyeLidDownLOrigin,
+                let eyeLidDownR = character.eyeLidDownR, let eyeLidDownROrigin = character.eyeLidDownROrigin else {
             return (SCNAction(), SCNAction(), SCNAction(), SCNAction())
         }
         
@@ -506,8 +344,11 @@ class ModelTestViewController: BaseViewController {
     
     // Create a repeating action for each eyelid with randomized blink cycles
     private func startBlinking(count: Int, duration: TimeInterval) {
-        guard let eyeLidUpL, let eyeLidUpR,
-              let eyeLidDownL, let eyeLidDownR else {
+        guard let eyeLidUpL = character.eyeLidUpL,
+              let eyeLidUpR = character.eyeLidUpR,
+              let eyeLidDownL = character.eyeLidDownL,
+              let eyeLidDownR = character.eyeLidDownR
+        else {
             return print("Required eyelid nodes not found")
         }
         let (upperLidActionL, upperLidActionR, lowerLidActionL, lowerLidActionR) = createRandomBlinkSequence(count: count, duration: duration)
@@ -518,9 +359,12 @@ class ModelTestViewController: BaseViewController {
         eyeLidDownR.runAction(SCNAction.repeatForever(lowerLidActionR))
     }
     
-    private func stopBlinking() {
-        guard let eyeLidUpL, let eyeLidUpR,
-              let eyeLidDownL, let eyeLidDownR else {
+    func stopBlinking() {
+        guard let eyeLidUpL = character.eyeLidUpL,
+              let eyeLidUpR = character.eyeLidUpR,
+              let eyeLidDownL = character.eyeLidDownL,
+              let eyeLidDownR = character.eyeLidDownR
+        else {
             return print("Required eyelid nodes not found")
         }
         eyeLidUpL.removeAllActions()
@@ -530,7 +374,7 @@ class ModelTestViewController: BaseViewController {
     }
 
     
-    private func createBlinkRandomizeTimer(blinkDuration duration: TimeInterval) {
+    func createBlinkRandomizeTimer(blinkDuration duration: TimeInterval) {
         idleStateTimer = Timer.scheduledTimer(withTimeInterval: 9.0, repeats: true, block: { [weak self] _ in
             guard let self else { return }
             // Stop old blink animations
@@ -542,7 +386,7 @@ class ModelTestViewController: BaseViewController {
         idleStateTimer?.fire()
     }
     
-    private func resetBlinkRandomizeTimer() {
+    func resetBlinkRandomizeTimer() {
         if idleStateTimer != nil {
             idleStateTimer?.invalidate()
             idleStateTimer = nil
@@ -551,56 +395,144 @@ class ModelTestViewController: BaseViewController {
     
     // MARK: - Head Rotate Animation
     
-    // Animate human idle state with head node
-    private func startHeadRotateAnimation() {
-        guard let head else { return }
-        // Store the original orientation of the head
+    func startHeadRotateAnimation() {
+        guard let head = character.head,
+              let eyeLeft = character.eyeLeft, let eyeLeftOrigin = character.eyeLeftOrigin,
+              let eyeRight = character.eyeRight, let eyeRightOrigin = character.eyeRightOrigin,
+              let eyeBrowLR = character.eyeBrowLR, let eyeBrowLROrigin = character.eyeBrowLROrigin,
+              let eyeBrowRL = character.eyeBrowRL, let eyeBrowRLOrigin = character.eyeBrowRLOrigin
+        else {
+            return print("Required eyebrow nodes not found")
+        }
+        // Store the original orientation of the head and eye positions
         let headOriginAngles = head.eulerAngles
         
-        // Function to create a random head movement sequence
-        func createHeadMovementSequence() -> SCNAction {
-            // Define small rotation angles for slight movement
+        // Function to create random head movement with synchronized eye movement
+        func createHeadAndEyeMovementSequence() -> SCNAction {
+            // Define small rotation angles for slight head movement
             let randomAngleX = Float.random(in: -0.05...0.05)  // Horizontal movement
             let randomAngleY = Float.random(in: -0.05...0.05)  // Vertical movement
-            // Create slight rotation actions
-            let rotateLeftRight = SCNAction.rotateBy(x: CGFloat(randomAngleX), y: CGFloat(randomAngleY), z: 0, duration: 1.0)
-            let returnToOrigin = SCNAction.rotateTo(
+            // Create slight rotation action for the head
+            let rotateHead = SCNAction.rotateBy(
+                x: CGFloat(randomAngleX),
+                y: CGFloat(randomAngleY),
+                z: 0,
+                duration: 1.0
+            )
+            // Return head and eyes back to original positions
+            let returnHeadToOrigin = SCNAction.rotateTo(
                 x: CGFloat(headOriginAngles.x),
                 y: CGFloat(headOriginAngles.y),
                 z: CGFloat(headOriginAngles.z),
                 duration: 1.0
             )
-            // Delay between movements to avoid constant rotation
+            returnHeadToOrigin.timingMode = .easeOut
+
+            // Define small random movements for the eyes
+            let randomEyeOffsetX = Float.random(in: -0.03...0.03)
+            let randomEyeOffsetY = Float.random(in: -0.03...0.03)
+            
+            // Move eyes slightly in sync with the head rotation
+            let moveEyes = SCNAction.run { _ in
+                eyeLeft.position = SCNVector3(
+                    eyeLeftOrigin.x + randomEyeOffsetX,
+                    eyeLeftOrigin.y + randomEyeOffsetY,
+                    eyeLeftOrigin.z
+                )
+                eyeRight.position = SCNVector3(
+                    eyeRightOrigin.x + randomEyeOffsetX,
+                    eyeRightOrigin.y + randomEyeOffsetY,
+                    eyeRightOrigin.z
+                )
+            }
+            moveEyes.timingMode = .easeIn
+            
+            let resetEyesToOrigin = SCNAction.run { [weak self] _ in
+                guard let self else { return }
+                eyeLeft.runAction(reset(position: eyeLeftOrigin, duration: 0.5))
+                eyeRight.runAction(reset(position: eyeRightOrigin, duration: 0.5))
+            }
+            resetEyesToOrigin.timingMode = .easeOut
+            
+            // Create eyebrow movement action (random up and down)
+            let randomBrowOffsetY = Float.random(in: 0.0...0.05)  // Vertical movement for eyebrows
+            let moveEyebrows = SCNAction.run { _ in
+                eyeBrowLR.position = SCNVector3(
+                    eyeBrowLROrigin.x,
+                    eyeBrowLROrigin.y + randomBrowOffsetY,
+                    eyeBrowLR.position.z
+                )
+                eyeBrowRL.position = SCNVector3(
+                    eyeBrowRLOrigin.x,
+                    eyeBrowRLOrigin.y + randomBrowOffsetY,
+                    eyeBrowRL.position.z
+                )
+            }
+            moveEyebrows.timingMode = .easeIn
+            
+            let resetBrowsToOrigin = SCNAction.run { [weak self] _ in
+                guard let self else { return }
+                eyeBrowLR.runAction(reset(position: eyeBrowLROrigin, duration: 0.5))
+                eyeBrowRL.runAction(reset(position: eyeBrowRLOrigin, duration: 0.5))
+            }
+            resetBrowsToOrigin.timingMode = .easeOut
+            
+            // Define delays to avoid constant movement and create a natural look
             let slightDelay = SCNAction.wait(duration: 1.5)
-            // Sequence: slight movement -> delay -> return to origin -> delay
-            return SCNAction.sequence([rotateLeftRight, slightDelay, returnToOrigin, slightDelay])
+            // Random delay for brow movement
+            let browMovementDelay = SCNAction.wait(duration: TimeInterval(Float.random(in: 4...7)))
+            // Sequence: move head, eyes, and brows -> delay -> return to origin -> delay
+            return SCNAction.sequence([
+                // Move head, eyes, and eyebrows
+                SCNAction.group([rotateHead, moveEyes, moveEyebrows]),
+                slightDelay,
+                // Reset head, eyes, and eyebrows
+                SCNAction.group([returnHeadToOrigin, resetEyesToOrigin, resetBrowsToOrigin]),
+                slightDelay,
+                browMovementDelay // Random delay before next brow movement
+            ])
         }
         
-        // Recursive function to loop idle animation
-        func runIdleHeadAnimation() {
-            let headMovementSequence = createHeadMovementSequence()
+        // Recursive function to loop idle head and eye animation
+        func runIdleHeadAndEyeAnimation() {
+            let headAndEyeMovementSequence = createHeadAndEyeMovementSequence()
             // Run sequence and repeat for continuous idle animation
-            head.runAction(headMovementSequence) {
-                runIdleHeadAnimation() // Recursively call for ongoing idle animation
+            head.runAction(headAndEyeMovementSequence) {
+                runIdleHeadAndEyeAnimation() // Recursively call for ongoing idle animation
             }
         }
-        // Start the first idle head animation cycle
-        runIdleHeadAnimation()
+        
+        // Start the first idle head and eye animation cycle
+        runIdleHeadAndEyeAnimation()
     }
 
-    private func stopHeadRotateAnimation() {
-        guard let head else { return }
-        head.removeAllActions()
+    func stopHeadRotateAnimation() {
+        guard let head = character.head, let headOrigin = character.headOrigin,
+              let eyeLeft = character.eyeLeft, let eyeLeftOrigin = character.eyeLeftOrigin,
+              let eyeRight = character.eyeRight, let eyeRightOrigin = character.eyeRightOrigin,
+              let eyeBrowLR = character.eyeBrowLR, let eyeBrowLROrigin = character.eyeBrowLROrigin,
+              let eyeBrowRL = character.eyeBrowRL, let eyeBrowRLOrigin = character.eyeBrowRLOrigin
+        else {
+            return print("Required eyebrow nodes not found")
+        }
+        head.runAction(reset(position: headOrigin, duration: 0.5))
+        // Reset eye positions to their origins when stopping the animation
+        eyeLeft.runAction(reset(position: eyeLeftOrigin, duration: 0.5))
+        eyeRight.runAction(reset(position: eyeRightOrigin, duration: 0.5))
+        eyeBrowLR.runAction(reset(position: eyeBrowLROrigin, duration: 0.5))
+        eyeBrowRL.runAction(reset(position: eyeBrowRLOrigin, duration: 0.5))
     }
-    
+
     // MARK: - Smile Animation
     
     // Slight smile animation
     private func createSlightlySmileAnimation(duration: TimeInterval) {
-        guard let lipUpL, let lipUp, let lipUpR,
-              let lipDownL, let lipDown, let lipDownR,
-              let sideLipL, let sideLipR
-        else { return }
+        guard let lipUpL = character.lipUpL, let lipUp = character.lipUp, let lipUpR = character.lipUpR,
+              let lipDownL = character.lipDownL, let lipDown = character.lipDown, let lipDownR = character.lipDownR,
+              let sideLipL = character.sideLipL, let sideLipR = character.sideLipR
+        else {
+            return print("Required lip nodes not found")
+        }
         
         let smileDuration = duration
         
@@ -630,10 +562,12 @@ class ModelTestViewController: BaseViewController {
 
     // Strong smile animation
     private func createStrongSmileAnimation(duration smileDuration: TimeInterval = 1.0) {
-        guard let lipUpL, let lipUp, let lipUpR,
-              let lipDownL, let lipDown, let lipDownR,
-              let sideLipL, let sideLipR
-        else { return }
+        guard let lipUpL = character.lipUpL, let lipUp = character.lipUp, let lipUpR = character.lipUpR,
+              let lipDownL = character.lipDownL, let lipDown = character.lipDown, let lipDownR = character.lipDownR,
+              let sideLipL = character.sideLipL, let sideLipR = character.sideLipR
+        else {
+            return print("Required lip nodes not found")
+        }
                 
         // Stronger smile movement (larger lip movement)
         let smileUpperLipLeft = SCNAction.move(to: SCNVector3(x: lipUpL.position.x, y: lipUpL.position.y + 0.05, z: lipUpL.position.z), duration: smileDuration)
@@ -661,11 +595,15 @@ class ModelTestViewController: BaseViewController {
     
     // Function to return lips to their original positions
     func resetSmileAnimation(duration: TimeInterval) {
-        
-        guard let lipUpL, let lipUpLOrigin, let lipUp, let lipUpOrigin, let lipUpR, let lipUpROrigin,
-              let lipDownL, let lipDownLOrigin, let lipDown, let lipDownOrigin, let lipDownR, let lipDownROrigin,
-              let sideLipL, let sideLipLOrigin, let sideLipR, let sideLipROrigin
-        else { return }
+        guard let lipUpL = character.lipUpL, let lipUp = character.lipUp, let lipUpR = character.lipUpR,
+              let lipUpLOrigin = character.lipUpLOrigin, let lipUpOrigin = character.lipUpOrigin, let lipUpROrigin = character.lipUpROrigin,
+              let lipDownL = character.lipDownL, let lipDown = character.lipDown, let lipDownR = character.lipDownR,
+              let lipDownLOrigin = character.lipDownLOrigin, let lipDownOrigin = character.lipDownOrigin, let lipDownROrigin = character.lipDownROrigin,
+              let sideLipL = character.sideLipL, let sideLipR = character.sideLipR,
+              let sideLipLOrigin = character.sideLipLOrigin, let sideLipROrigin = character.sideLipROrigin
+        else {
+            return print("Required lip nodes not found")
+        }
         
         let smileDuration = duration
         
@@ -692,7 +630,7 @@ class ModelTestViewController: BaseViewController {
         sideLipR.runAction(returnSideLipRight)
     }
 
-    private func startSlightlySmileAnimation() {
+    func startSlightlySmileAnimation() {
         createSlightlySmileAnimation(duration: 1.0)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.resetSmileAnimation(duration: 1.0)
@@ -702,91 +640,8 @@ class ModelTestViewController: BaseViewController {
         }
     }
     
-    private func stopSlightlySmileAnimation() {
+    func stopSlightlySmileAnimation() {
         resetSmileAnimation(duration: 1.0)
-    }
-
-    // MARK: - Idle state trigger functions
-
-    private func startIdleStateAnimation() {
-        guard currentState == .none else { return }
-        startBlinkEyes(duration: 0.2)
-        startHeadRotateAnimation()
-        startSlightlySmileAnimation()
-        currentState = .idle
-    }
-    
-    private func stopIdleStateAnimation() {
-        stopBlinking()
-        resetBlinkRandomizeTimer()
-        stopHeadRotateAnimation()
-        stopSlightlySmileAnimation()
-        currentState = .none
-    }
-
-    // MARK: - Actions
-    
-    func animateLipSync(characterNode: SCNNode, visemes: [String], durations: [Double]) {
-        // Iterate through each viseme
-        for (index, viseme) in visemes.enumerated() {
-            let duration = durations[index]
-            let halfDuration = duration / 2
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + (duration * Double(index))) { [weak self] in
-                guard let self = self else { return }
-                
-                print("Animating viseme: \(viseme) for duration: \(duration)")
-
-                // Animate based on the current viseme
-                animateViseme(viseme: viseme, halfDuration: halfDuration)
-                
-                // Reset the mouth shape after the half duration has passed
-                DispatchQueue.main.asyncAfter(deadline: .now() + halfDuration) { [weak self] in
-                    guard let self = self else { return }
-                    
-                    print("Resetting mouth shape and closing jaw for viseme: \(viseme)")
-                    
-                    // Reset mouth shape and close jaw
-                    self.resetMouthShape(duration: halfDuration)
-                    self.animateJawClose(duration: halfDuration)
-                }
-            }
-        }
-        
-        // Reset the `currentState` to `.none` after all animations are complete
-        DispatchQueue.main.asyncAfter(deadline: .now() + durations.reduce(0, +)) { [weak self] in
-            guard let self = self else { return }
-            print("All animations complete, setting state to .none")
-            self.currentState = .none
-        }
-    }
-
-    private func animateViseme(viseme: String, halfDuration: Double) {
-        switch viseme {
-        case "A", "E", "AA": // Wide mouth
-            animateWiderMouth(duration: halfDuration)
-        case "K", "S", "T": // Narrow wide mouth
-            animateWideMouth(duration: halfDuration)
-        case "O", "U": // Rounded mouth
-            animateRoundedMouth(duration: halfDuration)
-        case "M", "P", "B": // Closed mouth
-            animateClosedMouth(duration: halfDuration)
-        default:
-            break
-        }
-    }
-
-    
-    func animateTalking() {
-        guard let characterNode = modelRootNode, currentState == .none else { return }
-        currentState = .talking
-        
-        // A broader list of visemes for testing
-        animateLipSync(
-            characterNode: characterNode,
-            visemes: ["A", "E", "O", "M", "K", "T", "P", "U", "A", "E", "O", "M", "K", "T", "P", "U"],
-            durations: Array(repeating: 0.3, count: 16)
-        )
     }
 }
 
@@ -807,6 +662,13 @@ extension ModelTestViewController {
             y: from.y + (to.y - from.y) * t,
             z: from.z + (to.z - from.z) * t
         )
+    }
+    
+    func detectLanguageOf(text: String) -> NLLanguage? {
+        let recognizer = NLLanguageRecognizer()
+        recognizer.processString(text)
+        guard let language = recognizer.dominantLanguage else { return nil}
+        return language
     }
     
     func printNodeNames(forNode modelNode: SCNNode?) {
