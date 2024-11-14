@@ -10,6 +10,10 @@ import SceneKit
 
 class ModelTestViewController: BaseViewController {
     
+    enum State {
+        case talking, idle, none
+    }
+    
     var sceneView: SCNView!
     var modelRootNode: SCNNode?
     
@@ -48,6 +52,11 @@ class ModelTestViewController: BaseViewController {
     
     // Timer
     private var idleStateTimer: Timer?
+    private var currentState: State = .none {
+        didSet {
+            print("State: \(currentState)")
+        }
+    }
     
     init(title: String) {
         super.init(nibName: nil, bundle: nil)
@@ -73,12 +82,16 @@ class ModelTestViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            guard let self else { return }
-            startIdleStateAnimation()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.animateTalking()
-            }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+//            guard let self else { return }
+//            startIdleStateAnimation()
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                self.animateTalking()
+//            }
+//        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.animateTalking()
         }
     }
     
@@ -696,9 +709,11 @@ class ModelTestViewController: BaseViewController {
     // MARK: - Idle state trigger functions
 
     private func startIdleStateAnimation() {
+        guard currentState == .none else { return }
         startBlinkEyes(duration: 0.2)
         startHeadRotateAnimation()
         startSlightlySmileAnimation()
+        currentState = .idle
     }
     
     private func stopIdleStateAnimation() {
@@ -706,58 +721,71 @@ class ModelTestViewController: BaseViewController {
         resetBlinkRandomizeTimer()
         stopHeadRotateAnimation()
         stopSlightlySmileAnimation()
+        currentState = .none
     }
 
     // MARK: - Actions
-
+    
     func animateLipSync(characterNode: SCNNode, visemes: [String], durations: [Double]) {
-        
-        // Stop idle animation
-        stopIdleStateAnimation()
-        
-        var delay: TimeInterval = 0.0
-        
+        // Iterate through each viseme
         for (index, viseme) in visemes.enumerated() {
             let duration = durations[index]
+            let halfDuration = duration / 2
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
-                guard let self else { return }
-                switch viseme {
-                case "A", "E", "AA": // Wider mouth
-                    animateWiderMouth(duration: duration)
-                case "K", "S", "T":
-                    animateWideMouth(duration: duration)
-                case "O", "U": // Rounded mouth
-                    animateRoundedMouth(duration: duration)
-                case "M", "P", "B": // Closed mouth
-                    animateClosedMouth(duration: duration)
-                default:
-                    break
-                }
-                // Optionally reset after each duration to neutral state
-                DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
-                    guard let self else { return }
-                    resetMouthShape(duration: 0.5)
-                    animateJawClose(duration: 0.5)
+            DispatchQueue.main.asyncAfter(deadline: .now() + (duration * Double(index))) { [weak self] in
+                guard let self = self else { return }
+                
+                print("Animating viseme: \(viseme) for duration: \(duration)")
+
+                // Animate based on the current viseme
+                animateViseme(viseme: viseme, halfDuration: halfDuration)
+                
+                // Reset the mouth shape after the half duration has passed
+                DispatchQueue.main.asyncAfter(deadline: .now() + halfDuration) { [weak self] in
+                    guard let self = self else { return }
+                    
+                    print("Resetting mouth shape and closing jaw for viseme: \(viseme)")
+                    
+                    // Reset mouth shape and close jaw
+                    self.resetMouthShape(duration: halfDuration)
+                    self.animateJawClose(duration: halfDuration)
                 }
             }
-            delay += duration
-            
-            if index == visemes.count - 1 {
-                // Restart Idle animation
-                startIdleStateAnimation()
-            }
+        }
+        
+        // Reset the `currentState` to `.none` after all animations are complete
+        DispatchQueue.main.asyncAfter(deadline: .now() + durations.reduce(0, +)) { [weak self] in
+            guard let self = self else { return }
+            print("All animations complete, setting state to .none")
+            self.currentState = .none
         }
     }
 
+    private func animateViseme(viseme: String, halfDuration: Double) {
+        switch viseme {
+        case "A", "E", "AA": // Wide mouth
+            animateWiderMouth(duration: halfDuration)
+        case "K", "S", "T": // Narrow wide mouth
+            animateWideMouth(duration: halfDuration)
+        case "O", "U": // Rounded mouth
+            animateRoundedMouth(duration: halfDuration)
+        case "M", "P", "B": // Closed mouth
+            animateClosedMouth(duration: halfDuration)
+        default:
+            break
+        }
+    }
+
+    
     func animateTalking() {
-        guard let characterNode = modelRootNode else { return }
+        guard let characterNode = modelRootNode, currentState == .none else { return }
+        currentState = .talking
+        
+        // A broader list of visemes for testing
         animateLipSync(
             characterNode: characterNode,
-            visemes: [
-                "A", "M", "K", "O",  "A", "M", "K", "O", "M", "A", "M", "K", "O",  "A", "M", "K", "O", "M", "A", "M", "K", "O",  "A", "M", "K", "O", "M", "A", "M", "K", "O",  "A", "M", "K", "O", "M", "A", "M", "K", "O",  "A", "M", "K", "O", "M"
-            ],
-            durations: Array.init(repeating: 0.3, count: 45)
+            visemes: ["A", "E", "O", "M", "K", "T", "P", "U", "A", "E", "O", "M", "K", "T", "P", "U"],
+            durations: Array(repeating: 0.3, count: 16)
         )
     }
 }
