@@ -1,7 +1,11 @@
-# UIKitAnimations
-A lot of animations, transitions created using Swift UIKit, SceneKit, Lottie iOS 11 
+# Github Projects
+A lot of animations, transitions, game, custom views created using Swift UIKit, SceneKit, SpriteKit Lottie on iOS 11 
 
 Detailed explanation made in my Medium article [Create custom ViewController Transition styles using Core Image Transition Filters](https://medium.com/@onur.isik/create-custom-viewcontroller-transition-styles-using-core-image-transition-filters-f75b3dfbdd63) and [Custom Ripple Effect View Controller Transition in Swift](https://medium.com/@onur.isik/custom-ripple-effect-view-controller-transition-in-swift-200d72340494))
+
+### 19/11/24
+1. Added Word Puzzle game using Spritekit 
+2. Project renamed
 
 ### 14/11/24
 1. Added Scenekit 3D assistant model (talking, idle, smile, eye blink etc. animations)
