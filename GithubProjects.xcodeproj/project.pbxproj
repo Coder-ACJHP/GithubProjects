@@ -11,6 +11,11 @@
 		F21E5C9F2CE6271200611347 /* ModelTestViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E5C9E2CE6271200611347 /* ModelTestViewController+Extensions.swift */; };
 		F21E5CA22CE6356500611347 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E5CA12CE6356500611347 /* String+Extension.swift */; };
 		F2583C812CDB49A200C63C64 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = F2583C802CDB49A200C63C64 /* art.scnassets */; };
+		F2596A512CEC7D9000620721 /* WordGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2596A502CEC7D9000620721 /* WordGameViewController.swift */; };
+		F2596A552CEC7E0500620721 /* WordGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2596A542CEC7E0500620721 /* WordGameScene.swift */; };
+		F2596A572CEC7E2400620721 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2596A562CEC7E2400620721 /* Level.swift */; };
+		F2596A592CECC4BE00620721 /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2596A582CECC4BE00620721 /* LevelManager.swift */; };
+		F2596A5B2CECCEA800620721 /* CustomLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2596A5A2CECCEA800620721 /* CustomLabelNode.swift */; };
 		F26EF1182CD90B0A00219B1E /* Parallax3DCardEffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26EF1172CD90B0A00219B1E /* Parallax3DCardEffectViewController.swift */; };
 		F27980C52CCBCD5900AFD849 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980C42CCBCD5900AFD849 /* ItemCell.swift */; };
 		F27980C72CCBCF6100AFD849 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980C62CCBCF6100AFD849 /* UIColor+Extension.swift */; };
@@ -57,6 +62,11 @@
 		F21E5C9E2CE6271200611347 /* ModelTestViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelTestViewController+Extensions.swift"; sourceTree = "<group>"; };
 		F21E5CA12CE6356500611347 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		F2583C802CDB49A200C63C64 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		F2596A502CEC7D9000620721 /* WordGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGameViewController.swift; sourceTree = "<group>"; };
+		F2596A542CEC7E0500620721 /* WordGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGameScene.swift; sourceTree = "<group>"; };
+		F2596A562CEC7E2400620721 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		F2596A582CECC4BE00620721 /* LevelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
+		F2596A5A2CECCEA800620721 /* CustomLabelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabelNode.swift; sourceTree = "<group>"; };
 		F26EF1172CD90B0A00219B1E /* Parallax3DCardEffectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parallax3DCardEffectViewController.swift; sourceTree = "<group>"; };
 		F27980C42CCBCD5900AFD849 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		F27980C62CCBCF6100AFD849 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -78,7 +88,7 @@
 		F2BEED0E2CCA629400AA22C3 /* FlashEffectTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashEffectTransition.swift; sourceTree = "<group>"; };
 		F2BEED122CCA74D000AA22C3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F2BEED152CCA8A8700AA22C3 /* SwipeEffectTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeEffectTransition.swift; sourceTree = "<group>"; };
-		F2C984AD2CC9198B005D90F6 /* UIKitAnimations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitAnimations.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2C984AD2CC9198B005D90F6 /* GithubProjects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubProjects.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2C984B02CC9198B005D90F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2C984B42CC9198B005D90F6 /* CarouselViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewController.swift; sourceTree = "<group>"; };
 		F2C984B92CC9198C005D90F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -127,6 +137,18 @@
 				F21E5C9D2CE626F900611347 /* ModelTestViewController */,
 			);
 			path = ArInteractiveRobotViewController;
+			sourceTree = "<group>";
+		};
+		F2596A4F2CEC7D3B00620721 /* WordGameViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2596A502CEC7D9000620721 /* WordGameViewController.swift */,
+				F2596A542CEC7E0500620721 /* WordGameScene.swift */,
+				F2596A562CEC7E2400620721 /* Level.swift */,
+				F2596A582CECC4BE00620721 /* LevelManager.swift */,
+				F2596A5A2CECCEA800620721 /* CustomLabelNode.swift */,
+			);
+			path = WordGameViewController;
 			sourceTree = "<group>";
 		};
 		F26EF1162CD90AE600219B1E /* Parallax3DCardEffectViewController */ = {
@@ -279,7 +301,7 @@
 		F2C984A42CC9198A005D90F6 = {
 			isa = PBXGroup;
 			children = (
-				F2C984AF2CC9198B005D90F6 /* UIKitAnimations */,
+				F2C984AF2CC9198B005D90F6 /* GithubProjects */,
 				F2C984AE2CC9198B005D90F6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -287,12 +309,12 @@
 		F2C984AE2CC9198B005D90F6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F2C984AD2CC9198B005D90F6 /* UIKitAnimations.app */,
+				F2C984AD2CC9198B005D90F6 /* GithubProjects.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F2C984AF2CC9198B005D90F6 /* UIKitAnimations */ = {
+		F2C984AF2CC9198B005D90F6 /* GithubProjects */ = {
 			isa = PBXGroup;
 			children = (
 				F2AD51A52CC993B80081BDE1 /* Lifecycle */,
@@ -310,8 +332,9 @@
 				F2F213622CCF904700D646DA /* TinderLikeViewController */,
 				F2583C7D2CDB46AD00C63C64 /* ArInteractiveRobotViewController */,
 				F2CE38F92CDC9DD5002D3E8E /* TalkingHeadViewController */,
+				F2596A4F2CEC7D3B00620721 /* WordGameViewController */,
 			);
-			path = UIKitAnimations;
+			path = GithubProjects;
 			sourceTree = "<group>";
 		};
 		F2C984C62CC92BE0005D90F6 /* CarouselViewController */ = {
@@ -372,9 +395,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F2C984AC2CC9198B005D90F6 /* UIKitAnimations */ = {
+		F2C984AC2CC9198B005D90F6 /* GithubProjects */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F2C984C12CC9198C005D90F6 /* Build configuration list for PBXNativeTarget "UIKitAnimations" */;
+			buildConfigurationList = F2C984C12CC9198C005D90F6 /* Build configuration list for PBXNativeTarget "GithubProjects" */;
 			buildPhases = (
 				F2C984A92CC9198B005D90F6 /* Sources */,
 				F2C984AA2CC9198B005D90F6 /* Frameworks */,
@@ -384,12 +407,12 @@
 			);
 			dependencies = (
 			);
-			name = UIKitAnimations;
+			name = GithubProjects;
 			packageProductDependencies = (
 				F2CE38FD2CDCA044002D3E8E /* Lottie */,
 			);
 			productName = CarouselCollectionView;
-			productReference = F2C984AD2CC9198B005D90F6 /* UIKitAnimations.app */;
+			productReference = F2C984AD2CC9198B005D90F6 /* GithubProjects.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -407,7 +430,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F2C984A82CC9198A005D90F6 /* Build configuration list for PBXProject "UIKitAnimations" */;
+			buildConfigurationList = F2C984A82CC9198A005D90F6 /* Build configuration list for PBXProject "GithubProjects" */;
 			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -423,7 +446,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F2C984AC2CC9198B005D90F6 /* UIKitAnimations */,
+				F2C984AC2CC9198B005D90F6 /* GithubProjects */,
 			);
 		};
 /* End PBXProject section */
@@ -453,6 +476,8 @@
 				F2BEECFE2CCA3E2D00AA22C3 /* BarsSwipeEffectTransition.swift in Sources */,
 				F29A79362CE3674F004302CF /* ModelTestViewController.swift in Sources */,
 				F2CE39002CDCA36D002D3E8E /* UITextField+Extension.swift in Sources */,
+				F2596A592CECC4BE00620721 /* LevelManager.swift in Sources */,
+				F2596A552CEC7E0500620721 /* WordGameScene.swift in Sources */,
 				F21E5C9F2CE6271200611347 /* ModelTestViewController+Extensions.swift in Sources */,
 				F27980C72CCBCF6100AFD849 /* UIColor+Extension.swift in Sources */,
 				F2BEED0A2CCA495500AA22C3 /* UIView+Extension.swift in Sources */,
@@ -463,6 +488,7 @@
 				F2CE38FB2CDC9E11002D3E8E /* TalkingHeadViewController.swift in Sources */,
 				F2C984B52CC9198B005D90F6 /* CarouselViewController.swift in Sources */,
 				F2C984B12CC9198B005D90F6 /* AppDelegate.swift in Sources */,
+				F2596A5B2CECCEA800620721 /* CustomLabelNode.swift in Sources */,
 				F2BEED162CCA8A8700AA22C3 /* SwipeEffectTransition.swift in Sources */,
 				F2BEED082CCA493D00AA22C3 /* UIImage+Extension.swift in Sources */,
 				F2F505562CDCEAE100AFEB19 /* Message.swift in Sources */,
@@ -482,8 +508,10 @@
 				F2F2135C2CCF7CBB00D646DA /* CardCarousel3DViewController.swift in Sources */,
 				F2AD51AB2CC998180081BDE1 /* TransitionTestViewController.swift in Sources */,
 				F2C984C52CC91FC0005D90F6 /* CarouselFlowLayout.swift in Sources */,
+				F2596A512CEC7D9000620721 /* WordGameViewController.swift in Sources */,
 				F2BEED132CCA74D000AA22C3 /* BaseViewController.swift in Sources */,
 				F2BEED022CCA446A00AA22C3 /* TransitionDestinationViewController.swift in Sources */,
+				F2596A572CEC7E2400620721 /* Level.swift in Sources */,
 				F2AD51AE2CC9AA480081BDE1 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,7 +658,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N26XM7U465;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = UIKitAnimations/Resources/Info.plist;
+				INFOPLIST_FILE = GithubProjects/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "UIKit Animations";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -661,7 +689,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N26XM7U465;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = UIKitAnimations/Resources/Info.plist;
+				INFOPLIST_FILE = GithubProjects/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "UIKit Animations";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -686,7 +714,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F2C984A82CC9198A005D90F6 /* Build configuration list for PBXProject "UIKitAnimations" */ = {
+		F2C984A82CC9198A005D90F6 /* Build configuration list for PBXProject "GithubProjects" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F2C984BF2CC9198C005D90F6 /* Debug */,
@@ -695,7 +723,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F2C984C12CC9198C005D90F6 /* Build configuration list for PBXNativeTarget "UIKitAnimations" */ = {
+		F2C984C12CC9198C005D90F6 /* Build configuration list for PBXNativeTarget "GithubProjects" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F2C984C22CC9198C005D90F6 /* Debug */,

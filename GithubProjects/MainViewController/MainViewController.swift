@@ -37,6 +37,9 @@ class MainViewController: BaseViewController {
             "Tinder Like",
             "3D Parallax Card"
         ]),
+        .init(title: "Lottie", items: [
+            "2D Model Talking"
+        ]),
         .init(title: "Custom Components", items: [
             "Zoom Center Cell",
             "3D Image Cards",
@@ -54,8 +57,8 @@ class MainViewController: BaseViewController {
         .init(title: "SceneKit", items: [
             "3D Model Talking",
         ]),
-        .init(title: "Lottie", items: [
-            "2D Model Talking"
+        .init(title: "SpriteKit", items: [
+            "Suggest Words"
         ])
     ]
     private let preferredCellHeight: CGFloat = 78.0
@@ -74,7 +77,7 @@ class MainViewController: BaseViewController {
     }
     
     private func configureNavigationBar() {
-        title = "Animations"
+        title = "Github Projects"
         tintColor = .black
         hasBackButton = false
     }
@@ -166,6 +169,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             destinationVC = ModelTestViewController(title: title)
         case let str where str.contains("2d model talking"):
             destinationVC = TalkingHeadViewController(title: title)
+        case let str where str.contains("suggest words"):
+            destinationVC = WordGameViewController(title: title)
         default: break
         }
         
