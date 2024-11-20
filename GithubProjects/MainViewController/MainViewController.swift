@@ -171,6 +171,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             destinationVC = TalkingHeadViewController(title: title)
         case let str where str.contains("suggest words"):
             destinationVC = WordGameViewController(title: title)
+            destinationVC!.modalTransitionStyle = .coverVertical
+            destinationVC!.modalPresentationStyle = .fullScreen
+            present(destinationVC!, animated: true)
+            return
         default: break
         }
         
