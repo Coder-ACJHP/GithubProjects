@@ -9,5 +9,5 @@ import Foundation
 // Struct for Level Data
 struct Level {
     let targetWords: [String]
-    let letters: String
+    var letters: String
 }

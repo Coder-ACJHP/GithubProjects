@@ -39,7 +39,7 @@ class SwipeToSuggestWordScene: SKScene {
     // Diamond count for each hint changes based on levels
     private var minRequiredDiamonds: Int = .zero
     private var diamonds: Int = .zero
-    private let levels = LevelManager.shared.levels
+    private let levels = LevelManager.shared.getLevels()
     private let rowCount = 6
     private let columnCount = 7
         
@@ -56,7 +56,7 @@ class SwipeToSuggestWordScene: SKScene {
         self.removeAllActions()
     }
     
-    func loadLevel(_ level: Int) {
+    func loadLevel(_ level: Int, fromDB: Bool = false) {
         guard level > 0 && level - 1 < levels.count else {
             showPopup(
                 withTitle: "Error",
@@ -77,6 +77,18 @@ class SwipeToSuggestWordScene: SKScene {
             )
             return
         }
+        
+        // If loading from the scratch release all old data
+        if !fromDB {
+            guessedWords = []
+            hintedLettersList = []
+            targetWords = []
+            letterPool = ""
+            wordSlots.removeAll()
+            letterNodes.removeAll()
+            currentLetterPath.removeAll()
+        }
+        
         targetWords = levelData.targetWords
         letterPool = levelData.letters
         
@@ -468,7 +480,9 @@ class SwipeToSuggestWordScene: SKScene {
         let encoder = JSONEncoder()
         do {
             let encodedState = try encoder.encode(state)
-            UserDefaults.standard.set(encodedState, forKey: "gameState")
+            let defaults = UserDefaults.standard
+            defaults.set(encodedState, forKey: "gameState")
+            defaults.synchronize()
         } catch {
             print("Failed to save game state: \(error)")
         }
@@ -488,7 +502,7 @@ class SwipeToSuggestWordScene: SKScene {
                 targetWords = state.targetWords
 
                 // Load the level layout
-                loadLevel(currentLevel)
+                loadLevel(currentLevel, fromDB: true)
 
                 // Populate guessed words into slots
                 for guessedWord in guessedWords {
@@ -606,6 +620,8 @@ class SwipeToSuggestWordScene: SKScene {
                 buttonTitle: "Continue",
                 completion: { [weak self] in
                     guard let self else { return }
+                    // Remove all child nodes
+                    self.removeAllChildren()
                     currentLevel += 1
                     loadLevel(currentLevel)
                 }
