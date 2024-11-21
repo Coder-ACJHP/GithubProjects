@@ -10,40 +10,47 @@ import SpriteKit
 
 class FillInTheBlankScene: SKScene {
     
+    private var questionLabel: SKLabelNode!
+    private var answerNodes: [SKLabelNode] = []
+    private var currentAnswerNode: SKLabelNode?
     private var closeButton: SKSpriteNode!
-    private var wordToGuess: String = "EXAMPLE" // The word the user needs to guess
-    private var blankSpaces: [SKLabelNode] = [] // To store blank spaces for the word
-    private var userInput: String = "" // To track the user input for the current word
+    private var originalPositions: [CGPoint] = []
+    private let gameManager = FillGameLevelManager.shared
     
     override func didMove(to view: SKView) {
-        super.didMove(to: view)
-        // Set up the blank spaces for the word
-        setupBlankSpaces()
-        setupCloseButton()
+        setupUI()
+        loadLevel()
     }
     
-    override func willMove(from view: SKView) {
-        super.willMove(from: view)
-        // Remove all child nodes
-        self.removeAllChildren()
-        // Remove all actions
-        self.removeAllActions()
-    }
-    
-    func setupBlankSpaces() {
-        let spaceWidth: CGFloat = 40
-        let startX: CGFloat = self.size.width / 2 - CGFloat(wordToGuess.count * 20) / 2
+    func setupUI() {
+        // Set up question label
+        questionLabel = SKLabelNode(fontNamed: "Chalkduster")
+        questionLabel.fontSize = 26
+        questionLabel.position = CGPoint(x: size.width / 2, y: size.height - 150)
+        questionLabel.preferredMaxLayoutWidth = size.width * 0.80
+        questionLabel.numberOfLines = 0
+        questionLabel.horizontalAlignmentMode = .center
+        questionLabel.verticalAlignmentMode = .center
+        addChild(questionLabel)
         
-        for (index, letter) in wordToGuess.enumerated() {
-            let blankSpace = SKLabelNode(text: "_")
-            blankSpace.fontSize = 36
-            blankSpace.position = CGPoint(x: startX + CGFloat(index) * spaceWidth, y: self.size.height / 2)
-            blankSpace.zPosition = 1
-            blankSpaces.append(blankSpace)
-            addChild(blankSpace)
+        // Set up answer labels
+        let answerPositions = [
+            CGPoint(x: size.width / 2 - 100, y: 100),
+            CGPoint(x: size.width / 2, y: 100),
+            CGPoint(x: size.width / 2 + 100, y: 100)
+        ]
+        
+        for position in answerPositions {
+            let answerNode = SKLabelNode(fontNamed: "Chalkduster")
+            answerNode.fontSize = 24
+            answerNode.position = position
+            answerNode.name = "answer_\(position)"
+            answerNodes.append(answerNode)
+            originalPositions.append(position)
+            addChild(answerNode)
         }
         
-        // You can add buttons, labels, etc., here for the game interface.
+        setupCloseButton()
     }
     
     private func setupCloseButton() {
@@ -58,32 +65,96 @@ class FillInTheBlankScene: SKScene {
         addChild(closeButton)
     }
     
-    func handleUserInput(letter: String) {
-        // Check if the letter is in the word
-        for (index, char) in wordToGuess.enumerated() {
-            if String(char) == letter {
-                blankSpaces[index].text = letter // Fill in the correct blank
-            }
-        }
-    }
-    
-    // You can add a button to submit answers, etc.
-    func checkIfCompleted() -> Bool {
-        return !blankSpaces.contains { $0.text == "_" }
-    }
-    
     private func dismissGameScene() {
         NavigationManager.shared.returnToMenuScene()
+    }
+    
+    func loadLevel() {
+        let currentLevel = gameManager.getCurrentLevel()
+        questionLabel.text = currentLevel.question
+        
+        for (index, answer) in currentLevel.answers.enumerated() {
+            answerNodes[index].text = answer
+            answerNodes[index].position = originalPositions[index]
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let touchLocation = touch.location(in: self)
-        // Reset the flag
-        switch touchLocation {
-        case let point where closeButton.frame.contains(point):
+        
+        if closeButton.frame.contains(touchLocation) {
             dismissGameScene()
-        default: break
+            return
         }
+        
+        if let node = atPoint(touchLocation) as? SKLabelNode,
+           node.name?.contains("answer_") == true {
+            currentAnswerNode = node
+        }
+        
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first,
+              let currentAnswerNode else {
+            return
+        }
+        
+        currentAnswerNode.position = touch.location(in: self)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let currentAnswerNode else {
+            return
+        }
+        
+        if currentAnswerNode.text == gameManager.getCurrentLevel().correctAnswer {
+            // Show filled question and transition to next level
+            let currentLevel = gameManager.getCurrentLevel()
+            let filledQuestion = currentLevel.question.replacingOccurrences(of: "_", with: currentAnswerNode.text!)
+            questionLabel.text = filledQuestion
+            
+            // Fade out the correct answer node
+            let fadeOut = SKAction.fadeOut(withDuration: 1.0)
+            currentAnswerNode.run(fadeOut) { [weak self] in
+                self?.moveToNextLevel()
+            }
+        } else {
+            // Handle incorrect answer
+            let originalPosition = originalPositions[answerNodes.firstIndex(of: currentAnswerNode)!]
+            let moveAction = SKAction.move(to: originalPosition, duration: 0.5)
+            currentAnswerNode.run(moveAction)
+            
+            showToast(message: "Incorrect! Please try again.")
+        }
+        // Release current answer
+        self.currentAnswerNode = nil
+    }
+    
+    func moveToNextLevel() {
+        if gameManager.isLastLevel() {
+            print("Congratulations! You've completed all levels.")
+        } else {
+            gameManager.nextLevel()
+            loadLevel()
+        }
+    }
+    
+    func showToast(message: String) {
+        let toastLabel = SKLabelNode(fontNamed: "Chalkduster")
+        toastLabel.text = message
+        toastLabel.fontSize = 24
+        toastLabel.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        toastLabel.alpha = 0
+        addChild(toastLabel)
+        
+        let fadeIn = SKAction.fadeIn(withDuration: 0.5)
+        let wait = SKAction.wait(forDuration: 2.0)
+        let fadeOut = SKAction.fadeOut(withDuration: 0.5)
+        let remove = SKAction.removeFromParent()
+        let sequence = SKAction.sequence([fadeIn, wait, fadeOut, remove])
+        
+        toastLabel.run(sequence)
     }
 }

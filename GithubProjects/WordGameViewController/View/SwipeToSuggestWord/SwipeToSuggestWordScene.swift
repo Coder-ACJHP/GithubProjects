@@ -19,8 +19,10 @@ class SwipeToSuggestWordScene: SKScene {
     private var titleLabel: SKLabelNode!
     private var diamondButton: SKSpriteNode!
     private var diamondLabel: SKLabelNode!
-    private var shuffleButton: SKLabelNode!
-    private var hintButton: SKLabelNode!
+    private var dictionaryButton: SKSpriteNode!
+    private var extraWordsButton: SKSpriteNode!
+    private var shuffleButton: SKSpriteNode!
+    private var hintButton: SKSpriteNode!
     
     private var lastTouchLocation: CGPoint?
     private var currentLinePath: CGMutablePath!
@@ -29,6 +31,8 @@ class SwipeToSuggestWordScene: SKScene {
     // Game State
     private var targetWords: [String] = [] // Words for the current level
     private var guessedWords: Set<String> = [] // Words guessed by the player
+    private var extraWords: Set<String> = [] // Words guessed by the player but level doesnt contains it
+    private var guessedExtraWords: Set<String> = [] // Words guessed by the player but level doesnt contains it
     private var letterPool: String = "" // Pool of letters to display
     private var isWordFound: Bool = false // Used for animation
     private var hintedLettersList: Array<String> = []
@@ -39,21 +43,47 @@ class SwipeToSuggestWordScene: SKScene {
     // Diamond count for each hint changes based on levels
     private var minRequiredDiamonds: Int = .zero
     private var diamonds: Int = .zero
-    private let levels = LevelManager.shared.getLevels()
+    private let levels = SwipeGameLevelManager.shared.getLevels()
     private let rowCount = 6
     private let columnCount = 7
+    // Game state update variables
+    private let notificationCenter = NotificationCenter.default
         
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         loadLastGameData()
+        
+        // Observe Notifications for saving game data
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(updateGameStateInDatabase),
+            name: UIApplication.didEnterBackgroundNotification,
+            object: nil
+        )
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(updateGameStateInDatabase),
+            name: UIApplication.willTerminateNotification,
+            object: nil
+        )
     }
     
     override func willMove(from view: SKView) {
         super.willMove(from: view)
+        // Cleanup Observers
+        notificationCenter.removeObserver(self)
         // Remove all child nodes
         self.removeAllChildren()
         // Remove all actions
         self.removeAllActions()
+    }
+    
+    deinit {
+        
+    }
+
+    @objc func updateGameStateInDatabase() {
+        saveGameData()
     }
     
     func loadLevel(_ level: Int, fromDB: Bool = false) {
@@ -80,6 +110,8 @@ class SwipeToSuggestWordScene: SKScene {
         
         // If loading from the scratch release all old data
         if !fromDB {
+            extraWords = []
+            guessedExtraWords = []
             guessedWords = []
             hintedLettersList = []
             targetWords = []
@@ -90,6 +122,7 @@ class SwipeToSuggestWordScene: SKScene {
         }
         
         targetWords = levelData.targetWords
+        extraWords = Set(levelData.extraWords)
         letterPool = levelData.letters
         
         configureDiamondLabel()
@@ -100,6 +133,8 @@ class SwipeToSuggestWordScene: SKScene {
         configureSwipeLine()
         setupHintButton()
         setupShuffleButton()
+        setupDictionaryButton()
+        setupExtraWordsButton()
     }
     
     // MARK: - Configure UI
@@ -160,27 +195,61 @@ class SwipeToSuggestWordScene: SKScene {
     }
     
     private func setupShuffleButton() {
-        shuffleButton = SKLabelNode(text: "Shuffle")
-        shuffleButton.fontName = "AvenirNext-Regular"
-        shuffleButton.fontSize = 18
-        shuffleButton.fontColor = .white
+        let texture = SKTexture(image: UIImage(resource: .shuffle))
+        shuffleButton = SKSpriteNode(texture: texture)
         shuffleButton.position = CGPoint(x: size.width - 40, y: 40)
         shuffleButton.name = "shuffleButton"
+        shuffleButton.setScale(0.7)
         
         // Add the shuffle button to the scene
         addChild(shuffleButton)
     }
     
+    private func setupDictionaryButton() {
+        
+        let topMargin: CGFloat = size.height - 110 // Position the word slots near the top
+        let spacing: CGFloat = 10 // Spacing between squares
+        let availableWidth = self.size.width - (spacing * 9)
+        let squareSize: CGFloat = availableWidth / CGFloat(columnCount) // Size of each rounded square
+        let wordSpacing = squareSize + spacing // Spacing between words
+        let posiX = spacing * 4
+        let posiY = (topMargin - CGFloat(rowCount) * wordSpacing) - 10
+            
+            
+        let texture = SKTexture(image: UIImage(resource: .dictionary))
+        dictionaryButton = SKSpriteNode(texture: texture)
+        dictionaryButton.position = CGPoint(x: posiX, y: posiY)
+        dictionaryButton.name = "dictionaryButton"
+        
+        // Add the shuffle button to the scene
+        addChild(dictionaryButton)
+    }    
+    
+    private func setupExtraWordsButton() {
+        let posiX = size.width - 30
+        let posiY = dictionaryButton.position.y
+            
+        let texture = SKTexture(image: UIImage(resource: .list))
+        extraWordsButton = SKSpriteNode(texture: texture)
+        extraWordsButton.position = CGPoint(x: posiX, y: posiY)
+        extraWordsButton.name = "notIncludedButton"
+        extraWordsButton.setScale(0.9)
+        
+        // Add the shuffle button to the scene
+        addChild(extraWordsButton)
+    }
+    
     private func setupHintButton() {
-        hintButton = SKLabelNode(text: "Hint")
-        hintButton.fontName = "AvenirNext-Regular"
-        hintButton.fontSize = 18
-        hintButton.fontColor = .white
-        hintButton.position = CGPoint(x: 30, y: 40)
+        let texture = SKTexture(image: UIImage(resource: .hint))
+        hintButton = SKSpriteNode(texture: texture)
+        hintButton.position = CGPoint(x: 40, y: 40)
         hintButton.name = "hintButton"
+        hintButton.setScale(0.7)
         
         // Add the shuffle button to the scene
         addChild(hintButton)
+        
+        shakeHintButtonForever()
     }
     
     private func setupWordSlots() {
@@ -315,28 +384,68 @@ class SwipeToSuggestWordScene: SKScene {
         }
     }
     
-    private func shakeHintButton() {
-        // Define keyframes for the shake animation
-        let keyframePositions: [CGFloat] = [-10, 10, -7, 7, -5, 5, 0] // Positions to move along the x-axis
+    private func shakeHintButtonForever() {
+        // Define keyframes for the rotation angles
+        let keyframeRotations: [CGFloat] = [-0.15, 0.15, -0.07, 0.07, -0.05, 0.05, 0] // Rotation angles in radians
         let keyframeDurations: [TimeInterval] = [0.15, 0.15, 0.1, 0.1, 0.1, 0.1, 0.2] // Durations for each keyframe
         
-        // Ensure keyframePositions and keyframeDurations are of the same length
-        guard keyframePositions.count == keyframeDurations.count else {
-            print("Keyframes mismatch: Check positions and durations arrays")
+        // Ensure keyframeRotations and keyframeDurations are of the same length
+        guard keyframeRotations.count == keyframeDurations.count else {
+            print("Keyframes mismatch: Check rotations and durations arrays")
             return
         }
         
         // Build the keyframe actions
         var actions: [SKAction] = []
-        for (index, position) in keyframePositions.enumerated() {
+        for (index, rotation) in keyframeRotations.enumerated() {
             let duration = keyframeDurations[index]
-            let action = SKAction.moveBy(x: position, y: 0, duration: duration)
+            let action = SKAction.rotate(toAngle: rotation, duration: duration, shortestUnitArc: true)
             actions.append(action)
         }
         
         // Create the keyframe animation
+        let waitAction = SKAction.wait(forDuration: 1.0)
+        actions.append(waitAction)
         let keyframeSequence = SKAction.sequence(actions)
-        hintButton.run(keyframeSequence)
+        let repeatForever = SKAction.repeatForever(keyframeSequence)
+        hintButton.run(repeatForever)
+    }
+    
+    func showDictionary(for word: String) {
+        let userInfo = ["word": word]
+        NotificationCenter.default.post(name: .needsToShowDictionary, object: nil, userInfo: userInfo)
+    }
+    
+    func showDictionaryPopup() {
+        let popup = CustomDictionaryPopupNode(
+            title: "Guessed Words",
+            message: "Tap on word to see meainings in the dictionary",
+            guessedWords: guessedWords
+        ) { [weak self] didTapOnWord in
+            guard let self else { return }
+            showDictionary(for: didTapOnWord)
+        }
+        popup.zPosition = 100
+        addChild(popup)
+        popup.alpha = .zero
+        // Animate
+        popup.run(SKAction.fadeIn(withDuration: 0.3))
+    }
+    
+    func showExtraWordsListPopup() {
+        let popup = CustomDictionaryPopupNode(
+            title: "Extra Words",
+            message: "These are real words you guessed, but they’re not part of this level.",
+            guessedWords: guessedExtraWords
+        ) { [weak self] didTapOnWord in
+            guard let self else { return }
+            showDictionary(for: didTapOnWord)
+        }
+        popup.zPosition = 100
+        addChild(popup)
+        popup.alpha = .zero
+        // Animate
+        popup.run(SKAction.fadeIn(withDuration: 0.3))
     }
     
     func showPopup(withTitle title: String, message: String, buttonTitle: String, completion: @escaping () -> Void) {
@@ -346,13 +455,11 @@ class SwipeToSuggestWordScene: SKScene {
             buttonTitle: buttonTitle,
             buttonAction: { completion() }
         )
-        
-        popup.setScale(0)
-        popup.position = CGPoint(x: size.width / 2, y: size.height / 2) // Center the popup
         popup.zPosition = 100
         addChild(popup)
+        popup.alpha = .zero
         // Animate
-        popup.run(SKAction.scale(to: 1, duration: 0.3))
+        popup.run(SKAction.fadeIn(withDuration: 0.3))
     }
     
     private func dismissGameScene() {
@@ -415,7 +522,6 @@ class SwipeToSuggestWordScene: SKScene {
     private func showHint() {
         guard diamonds >= minRequiredDiamonds else {
             showShortMessage(text: "you don't have enough diamonds, maybe you'll consider buying some.")
-            shakeHintButton()
             return
         }
         guard let firstEmptySlot = wordSlots.filter({ $0.text == "" }).first,
@@ -460,6 +566,10 @@ class SwipeToSuggestWordScene: SKScene {
             label.labelNode.run(SKAction.fadeIn(withDuration: 0.3)) // Animate fade-in
         }
         
+        // Update diamonds and label
+        diamonds -= 1
+        diamondLabel.text = "\(diamonds)"
+        
         // Add created word to guessed word list then check if level finished
         let formedWord = hintedLettersList.joined()
         if targetWords.contains(formedWord), !guessedWords.contains(formedWord) {
@@ -470,10 +580,12 @@ class SwipeToSuggestWordScene: SKScene {
     }
 
     private func saveGameData() {
-        let state = GameState(
+        let state = SwipeGameState(
             level: currentLevel,
             diamonds: diamonds,
             guessedWords: Array(guessedWords),
+            extraWords: Array(extraWords),
+            guessedExtraWords: Array(guessedExtraWords),
             hintsUsed: hintedLettersList, // Save the actual list of hinted letters
             targetWords: targetWords
         )
@@ -495,9 +607,12 @@ class SwipeToSuggestWordScene: SKScene {
         if let savedGameState = defaults.data(forKey: "gameState") {
             let decoder = JSONDecoder()
             do {
-                let state = try decoder.decode(GameState.self, from: savedGameState)
+                let state = try decoder.decode(SwipeGameState.self, from: savedGameState)
                 currentLevel = state.level
+                diamonds = state.diamonds
                 guessedWords = Set(state.guessedWords)
+                extraWords = Set(state.extraWords)
+                guessedExtraWords = Set(state.guessedExtraWords)
                 hintedLettersList = state.hintsUsed // Load the actual list of hinted letters
                 targetWords = state.targetWords
 
@@ -577,14 +692,24 @@ class SwipeToSuggestWordScene: SKScene {
     // MARK: - Game State Checkers
     
     private func checkWordIsFoundNowOrAlreadyFounded() {
+        // Create a word from letter path
         let formedWord = currentLetterPath.map { $0.text! }.joined()
-        if targetWords.contains(formedWord), !guessedWords.contains(formedWord) {
+        // If the word has already been guessed, show the message
+        if guessedWords.contains(formedWord) {
+            showShortMessage(text: "You've already guessed that word.")
+            
+        // If targetWords contains the guessed word and isn't guessed before
+        } else if targetWords.contains(formedWord), !guessedWords.contains(formedWord) {
             guessedWords.insert(formedWord)
             fillWordSlot(formedWord)
             isWordFound = true
-        } else if guessedWords.contains(formedWord) {
-            // If the word has already been guessed, show the message
-            showShortMessage(text: "You've already guessed that word.")
+            
+        // If extraWords contains the guessed word and isn't guessed before as extra
+        } else if extraWords.contains(formedWord), !guessedExtraWords.contains(formedWord) {
+            guessedExtraWords.insert(formedWord)
+            showShortMessage(text: "Well done, you got 1 diamond.")
+            diamonds += 1
+            diamondLabel.text = "\(diamonds)"
         }
     }
     
@@ -646,6 +771,10 @@ class SwipeToSuggestWordScene: SKScene {
             showHint()
         case let point where diamondButton.frame.contains(point):
             showPaywallScene()
+        case let point where dictionaryButton.frame.contains(point):
+            showDictionaryPopup()
+        case let point where extraWordsButton.frame.contains(point):
+            showExtraWordsListPopup()
         default:
             if let touchedNode = atPoint(touchLocation) as? CustomLabelNode,
                 letterNodes.contains(touchedNode) {
@@ -687,20 +816,6 @@ class SwipeToSuggestWordScene: SKScene {
         // Check if level is completed
         runNextLevelIfNeeded()
     }
-    
-    
 }
 
-// MARK: - SKNode Center
 
-extension SKNode {
-    public var center: CGPoint {
-        // Get the label's frame
-        let nodeFrame = self.frame
-        // Calculate the center point
-        let centerX = nodeFrame.origin.x + (nodeFrame.size.width / 2)
-        let centerY = nodeFrame.origin.y + (nodeFrame.size.height / 2)
-        // Create a CGPoint for the center
-        return CGPoint(x: centerX, y: centerY)
-    }
-}

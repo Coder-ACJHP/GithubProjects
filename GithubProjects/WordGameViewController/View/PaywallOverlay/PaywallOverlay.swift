@@ -16,7 +16,7 @@ class PaywallOverlay: SKNode {
         // Set up the semi-transparent background
         let background = SKSpriteNode(color: UIColor.black.withAlphaComponent(0.8), size: size)
         background.position = CGPoint(x: size.width / 2, y: size.height / 2)
-        background.zPosition = 100 // Ensure it's above other nodes
+        background.zPosition = -1 // Ensure it's above other nodes
         background.name = "overlayBackground"
         addChild(background)
         
@@ -25,7 +25,7 @@ class PaywallOverlay: SKNode {
         container.fillColor = .white
         container.strokeColor = .clear
         container.position = CGPoint(x: size.width / 2, y: size.height / 2)
-        container.zPosition = 101 // Above the background
+        container.zPosition = 1 // Above the background
         addChild(container)
         
         // Add a title label

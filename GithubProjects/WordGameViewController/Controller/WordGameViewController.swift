@@ -12,7 +12,8 @@ import SpriteKit
 
 class WordGameViewController: UIViewController {
     
-    public var skView: SKView!
+    private var skView: SKView!
+    private var notificationCenter = NotificationCenter.default
     
     init(title: String) {
         super.init(nibName: nil, bundle: nil)
@@ -33,10 +34,40 @@ class WordGameViewController: UIViewController {
         let navigationManager = NavigationManager.shared
         navigationManager.skView = skView
         navigationManager.navigateToMenuScene()
+        
+        addNotifcationObservers()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    
+    deinit {
+        removeNotificationObservers()
+    }
+    
+    private func addNotifcationObservers() {
+        let action = #selector(handleNotification(_:))
+        notificationCenter.addObserver(self, selector: action, name: .needsToShowDictionary, object: nil)
+    }
+    
+    private func removeNotificationObservers() {
+        notificationCenter.removeObserver(self)
+    }
+    
+    @objc
+    private func handleNotification(_ notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        
+        let name = notification.name
+        if name == NSNotification.Name.needsToShowDictionary,
+           let word = userInfo["word"] as? String {
+            
+            if UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: word) {
+                var childVC = UIReferenceLibraryViewController(term: word)
+                present(childVC, animated: true, completion: nil)
+            }
+        }
     }
 
     // MARK: - UI Overrides
