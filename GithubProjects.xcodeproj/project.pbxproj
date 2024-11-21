@@ -11,11 +11,6 @@
 		F21E5C9F2CE6271200611347 /* ModelTestViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E5C9E2CE6271200611347 /* ModelTestViewController+Extensions.swift */; };
 		F21E5CA22CE6356500611347 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E5CA12CE6356500611347 /* String+Extension.swift */; };
 		F2583C812CDB49A200C63C64 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = F2583C802CDB49A200C63C64 /* art.scnassets */; };
-		F2596A512CEC7D9000620721 /* WordGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2596A502CEC7D9000620721 /* WordGameViewController.swift */; };
-		F2596A552CEC7E0500620721 /* SwipeToSuggestWordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2596A542CEC7E0500620721 /* SwipeToSuggestWordScene.swift */; };
-		F2596A572CEC7E2400620721 /* SwipeGameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2596A562CEC7E2400620721 /* SwipeGameLevel.swift */; };
-		F2596A592CECC4BE00620721 /* SwipeGameLevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2596A582CECC4BE00620721 /* SwipeGameLevelManager.swift */; };
-		F2596A5B2CECCEA800620721 /* CustomLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2596A5A2CECCEA800620721 /* CustomLabelNode.swift */; };
 		F26EF1182CD90B0A00219B1E /* Parallax3DCardEffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26EF1172CD90B0A00219B1E /* Parallax3DCardEffectViewController.swift */; };
 		F27980C52CCBCD5900AFD849 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980C42CCBCD5900AFD849 /* ItemCell.swift */; };
 		F27980C72CCBCF6100AFD849 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980C62CCBCF6100AFD849 /* UIColor+Extension.swift */; };
@@ -23,20 +18,8 @@
 		F27980CB2CCBDED900AFD849 /* UIModalTransitionStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980CA2CCBDED900AFD849 /* UIModalTransitionStyle+Extension.swift */; };
 		F27980CE2CCBE61C00AFD849 /* CustomTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980CD2CCBE61C00AFD849 /* CustomTabbarViewController.swift */; };
 		F27980D02CCBE64B00AFD849 /* AnimatedTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27980CF2CCBE64B00AFD849 /* AnimatedTabbar.swift */; };
-		F28F37E72CEF1E2B00A5A634 /* FillGameLevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28F37E62CEF1E2B00A5A634 /* FillGameLevelManager.swift */; };
-		F28F37E92CEF1E3D00A5A634 /* FillGameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28F37E82CEF1E3D00A5A634 /* FillGameLevel.swift */; };
-		F28F37EB2CEF263500A5A634 /* NSNotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28F37EA2CEF263500A5A634 /* NSNotificationName+Extension.swift */; };
 		F28F37ED2CEF26C900A5A634 /* SKNode+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28F37EC2CEF26C900A5A634 /* SKNode+Extension.swift */; };
-		F28F37EF2CEF2CBD00A5A634 /* CustomDictionaryPopupNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28F37EE2CEF2CBD00A5A634 /* CustomDictionaryPopupNode.swift */; };
-		F28F37F12CEF5D8200A5A634 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28F37F02CEF5D8200A5A634 /* LanguageManager.swift */; };
 		F29A79362CE3674F004302CF /* ModelTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29A79352CE3674F004302CF /* ModelTestViewController.swift */; };
-		F2AC6BD82CED1A4D00AE8B56 /* CustomPopupNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AC6BD72CED1A4D00AE8B56 /* CustomPopupNode.swift */; };
-		F2AC6BDA2CEDD5B200AE8B56 /* SwipeGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AC6BD92CEDD5B200AE8B56 /* SwipeGameState.swift */; };
-		F2AC6BE82CEDF05200AE8B56 /* FillInTheBlankScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AC6BE72CEDF05200AE8B56 /* FillInTheBlankScene.swift */; };
-		F2AC6BEB2CEE0AE400AE8B56 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AC6BEA2CEE0AE400AE8B56 /* MenuScene.swift */; };
-		F2AC6BED2CEE109A00AE8B56 /* CustomButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AC6BEC2CEE109A00AE8B56 /* CustomButtonNode.swift */; };
-		F2AC6BEF2CEE13D700AE8B56 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AC6BEE2CEE13D700AE8B56 /* NavigationManager.swift */; };
-		F2AC6BF22CEE257A00AE8B56 /* PaywallOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AC6BF12CEE257A00AE8B56 /* PaywallOverlay.swift */; };
 		F2AD51A42CC966900081BDE1 /* ImageRippleTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD51A32CC966900081BDE1 /* ImageRippleTransitionViewController.swift */; };
 		F2AD51A92CC996370081BDE1 /* RippleEffectTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD51A82CC996370081BDE1 /* RippleEffectTransition.swift */; };
 		F2AD51AB2CC998180081BDE1 /* TransitionTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD51AA2CC998180081BDE1 /* TransitionTestViewController.swift */; };
@@ -75,11 +58,6 @@
 		F21E5C9E2CE6271200611347 /* ModelTestViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelTestViewController+Extensions.swift"; sourceTree = "<group>"; };
 		F21E5CA12CE6356500611347 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		F2583C802CDB49A200C63C64 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		F2596A502CEC7D9000620721 /* WordGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGameViewController.swift; sourceTree = "<group>"; };
-		F2596A542CEC7E0500620721 /* SwipeToSuggestWordScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeToSuggestWordScene.swift; sourceTree = "<group>"; };
-		F2596A562CEC7E2400620721 /* SwipeGameLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeGameLevel.swift; sourceTree = "<group>"; };
-		F2596A582CECC4BE00620721 /* SwipeGameLevelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeGameLevelManager.swift; sourceTree = "<group>"; };
-		F2596A5A2CECCEA800620721 /* CustomLabelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabelNode.swift; sourceTree = "<group>"; };
 		F26EF1172CD90B0A00219B1E /* Parallax3DCardEffectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parallax3DCardEffectViewController.swift; sourceTree = "<group>"; };
 		F27980C42CCBCD5900AFD849 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		F27980C62CCBCF6100AFD849 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -87,20 +65,8 @@
 		F27980CA2CCBDED900AFD849 /* UIModalTransitionStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIModalTransitionStyle+Extension.swift"; sourceTree = "<group>"; };
 		F27980CD2CCBE61C00AFD849 /* CustomTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarViewController.swift; sourceTree = "<group>"; };
 		F27980CF2CCBE64B00AFD849 /* AnimatedTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTabbar.swift; sourceTree = "<group>"; };
-		F28F37E62CEF1E2B00A5A634 /* FillGameLevelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillGameLevelManager.swift; sourceTree = "<group>"; };
-		F28F37E82CEF1E3D00A5A634 /* FillGameLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillGameLevel.swift; sourceTree = "<group>"; };
-		F28F37EA2CEF263500A5A634 /* NSNotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotificationName+Extension.swift"; sourceTree = "<group>"; };
 		F28F37EC2CEF26C900A5A634 /* SKNode+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKNode+Extension.swift"; sourceTree = "<group>"; };
-		F28F37EE2CEF2CBD00A5A634 /* CustomDictionaryPopupNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDictionaryPopupNode.swift; sourceTree = "<group>"; };
-		F28F37F02CEF5D8200A5A634 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		F29A79352CE3674F004302CF /* ModelTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTestViewController.swift; sourceTree = "<group>"; };
-		F2AC6BD72CED1A4D00AE8B56 /* CustomPopupNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupNode.swift; sourceTree = "<group>"; };
-		F2AC6BD92CEDD5B200AE8B56 /* SwipeGameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeGameState.swift; sourceTree = "<group>"; };
-		F2AC6BE72CEDF05200AE8B56 /* FillInTheBlankScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillInTheBlankScene.swift; sourceTree = "<group>"; };
-		F2AC6BEA2CEE0AE400AE8B56 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
-		F2AC6BEC2CEE109A00AE8B56 /* CustomButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonNode.swift; sourceTree = "<group>"; };
-		F2AC6BEE2CEE13D700AE8B56 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
-		F2AC6BF12CEE257A00AE8B56 /* PaywallOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallOverlay.swift; sourceTree = "<group>"; };
 		F2AD51A32CC966900081BDE1 /* ImageRippleTransitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRippleTransitionViewController.swift; sourceTree = "<group>"; };
 		F2AD51A82CC996370081BDE1 /* RippleEffectTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleEffectTransition.swift; sourceTree = "<group>"; };
 		F2AD51AA2CC998180081BDE1 /* TransitionTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionTestViewController.swift; sourceTree = "<group>"; };
@@ -165,17 +131,6 @@
 			path = ArInteractiveRobotViewController;
 			sourceTree = "<group>";
 		};
-		F2596A4F2CEC7D3B00620721 /* WordGameViewController */ = {
-			isa = PBXGroup;
-			children = (
-				F2AC6BE32CEDEF1700AE8B56 /* Utility */,
-				F2AC6BDF2CEDEECD00AE8B56 /* Model */,
-				F2AC6BE02CEDEEDA00AE8B56 /* View */,
-				F2AC6BE22CEDEEEF00AE8B56 /* Controller */,
-			);
-			path = WordGameViewController;
-			sourceTree = "<group>";
-		};
 		F26EF1162CD90AE600219B1E /* Parallax3DCardEffectViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,90 +146,6 @@
 				F27980CD2CCBE61C00AFD849 /* CustomTabbarViewController.swift */,
 			);
 			path = CustomTabbarViewController;
-			sourceTree = "<group>";
-		};
-		F2AC6BDF2CEDEECD00AE8B56 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				F2596A562CEC7E2400620721 /* SwipeGameLevel.swift */,
-				F2AC6BD92CEDD5B200AE8B56 /* SwipeGameState.swift */,
-				F28F37E82CEF1E3D00A5A634 /* FillGameLevel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		F2AC6BE02CEDEEDA00AE8B56 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				F2AC6BE42CEDEF9900AE8B56 /* Custom */,
-				F2AC6BF02CEE257100AE8B56 /* PaywallOverlay */,
-				F2AC6BE92CEE0AD000AE8B56 /* MenuScene */,
-				F2AC6BE62CEDF02700AE8B56 /* FillIntheBlank */,
-				F2AC6BE52CEDF01100AE8B56 /* SwipeToSuggestWord */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		F2AC6BE22CEDEEEF00AE8B56 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				F2596A502CEC7D9000620721 /* WordGameViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		F2AC6BE32CEDEF1700AE8B56 /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				F2596A582CECC4BE00620721 /* SwipeGameLevelManager.swift */,
-				F2AC6BEE2CEE13D700AE8B56 /* NavigationManager.swift */,
-				F28F37E62CEF1E2B00A5A634 /* FillGameLevelManager.swift */,
-				F28F37F02CEF5D8200A5A634 /* LanguageManager.swift */,
-			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
-		F2AC6BE42CEDEF9900AE8B56 /* Custom */ = {
-			isa = PBXGroup;
-			children = (
-				F2596A5A2CECCEA800620721 /* CustomLabelNode.swift */,
-				F2AC6BEC2CEE109A00AE8B56 /* CustomButtonNode.swift */,
-				F2AC6BD72CED1A4D00AE8B56 /* CustomPopupNode.swift */,
-				F28F37EE2CEF2CBD00A5A634 /* CustomDictionaryPopupNode.swift */,
-			);
-			path = Custom;
-			sourceTree = "<group>";
-		};
-		F2AC6BE52CEDF01100AE8B56 /* SwipeToSuggestWord */ = {
-			isa = PBXGroup;
-			children = (
-				F2596A542CEC7E0500620721 /* SwipeToSuggestWordScene.swift */,
-			);
-			path = SwipeToSuggestWord;
-			sourceTree = "<group>";
-		};
-		F2AC6BE62CEDF02700AE8B56 /* FillIntheBlank */ = {
-			isa = PBXGroup;
-			children = (
-				F2AC6BE72CEDF05200AE8B56 /* FillInTheBlankScene.swift */,
-			);
-			path = FillIntheBlank;
-			sourceTree = "<group>";
-		};
-		F2AC6BE92CEE0AD000AE8B56 /* MenuScene */ = {
-			isa = PBXGroup;
-			children = (
-				F2AC6BEA2CEE0AE400AE8B56 /* MenuScene.swift */,
-			);
-			path = MenuScene;
-			sourceTree = "<group>";
-		};
-		F2AC6BF02CEE257100AE8B56 /* PaywallOverlay */ = {
-			isa = PBXGroup;
-			children = (
-				F2AC6BF12CEE257A00AE8B56 /* PaywallOverlay.swift */,
-			);
-			path = PaywallOverlay;
 			sourceTree = "<group>";
 		};
 		F2AD519F2CC966420081BDE1 /* RippleTransitionEffect */ = {
@@ -371,7 +242,6 @@
 				F2F2135E2CCF855300D646DA /* CGFloat+Extension.swift */,
 				F2CE38FF2CDCA36D002D3E8E /* UITextField+Extension.swift */,
 				F21E5CA12CE6356500611347 /* String+Extension.swift */,
-				F28F37EA2CEF263500A5A634 /* NSNotificationName+Extension.swift */,
 				F28F37EC2CEF26C900A5A634 /* SKNode+Extension.swift */,
 			);
 			path = Extensions;
@@ -443,7 +313,6 @@
 				F2F213622CCF904700D646DA /* TinderLikeViewController */,
 				F2583C7D2CDB46AD00C63C64 /* ArInteractiveRobotViewController */,
 				F2CE38F92CDC9DD5002D3E8E /* TalkingHeadViewController */,
-				F2596A4F2CEC7D3B00620721 /* WordGameViewController */,
 			);
 			path = GithubProjects;
 			sourceTree = "<group>";
@@ -587,37 +456,24 @@
 				F2BEECFE2CCA3E2D00AA22C3 /* BarsSwipeEffectTransition.swift in Sources */,
 				F29A79362CE3674F004302CF /* ModelTestViewController.swift in Sources */,
 				F2CE39002CDCA36D002D3E8E /* UITextField+Extension.swift in Sources */,
-				F28F37E92CEF1E3D00A5A634 /* FillGameLevel.swift in Sources */,
-				F2596A592CECC4BE00620721 /* SwipeGameLevelManager.swift in Sources */,
-				F2596A552CEC7E0500620721 /* SwipeToSuggestWordScene.swift in Sources */,
 				F21E5C9F2CE6271200611347 /* ModelTestViewController+Extensions.swift in Sources */,
 				F27980C72CCBCF6100AFD849 /* UIColor+Extension.swift in Sources */,
 				F2BEED0A2CCA495500AA22C3 /* UIView+Extension.swift in Sources */,
 				F27980C52CCBCD5900AFD849 /* ItemCell.swift in Sources */,
-				F28F37EF2CEF2CBD00A5A634 /* CustomDictionaryPopupNode.swift in Sources */,
 				F2F2135F2CCF855300D646DA /* CGFloat+Extension.swift in Sources */,
 				F27980D02CCBE64B00AFD849 /* AnimatedTabbar.swift in Sources */,
-				F28F37F12CEF5D8200A5A634 /* LanguageManager.swift in Sources */,
 				F2F505542CDCE60500AFEB19 /* MessageCell.swift in Sources */,
 				F2CE38FB2CDC9E11002D3E8E /* TalkingHeadViewController.swift in Sources */,
 				F2C984B52CC9198B005D90F6 /* CarouselViewController.swift in Sources */,
 				F2C984B12CC9198B005D90F6 /* AppDelegate.swift in Sources */,
-				F2AC6BED2CEE109A00AE8B56 /* CustomButtonNode.swift in Sources */,
-				F2596A5B2CECCEA800620721 /* CustomLabelNode.swift in Sources */,
-				F2AC6BEB2CEE0AE400AE8B56 /* MenuScene.swift in Sources */,
 				F2BEED162CCA8A8700AA22C3 /* SwipeEffectTransition.swift in Sources */,
 				F2BEED082CCA493D00AA22C3 /* UIImage+Extension.swift in Sources */,
-				F28F37EB2CEF263500A5A634 /* NSNotificationName+Extension.swift in Sources */,
 				F2F505562CDCEAE100AFEB19 /* Message.swift in Sources */,
-				F2AC6BF22CEE257A00AE8B56 /* PaywallOverlay.swift in Sources */,
 				F2AD51A92CC996370081BDE1 /* RippleEffectTransition.swift in Sources */,
 				F21E5C9C2CE602CB00611347 /* Character.swift in Sources */,
-				F2AC6BDA2CEDD5B200AE8B56 /* SwipeGameState.swift in Sources */,
 				F27980CB2CCBDED900AFD849 /* UIModalTransitionStyle+Extension.swift in Sources */,
-				F2AC6BE82CEDF05200AE8B56 /* FillInTheBlankScene.swift in Sources */,
 				F2BEED0F2CCA629400AA22C3 /* FlashEffectTransition.swift in Sources */,
 				F2AD51A42CC966900081BDE1 /* ImageRippleTransitionViewController.swift in Sources */,
-				F2AC6BEF2CEE13D700AE8B56 /* NavigationManager.swift in Sources */,
 				F27980CE2CCBE61C00AFD849 /* CustomTabbarViewController.swift in Sources */,
 				F26EF1182CD90B0A00219B1E /* Parallax3DCardEffectViewController.swift in Sources */,
 				F2F213612CCF8F6800D646DA /* TinderLikeViewController.swift in Sources */,
@@ -630,12 +486,8 @@
 				F2F2135C2CCF7CBB00D646DA /* CardCarousel3DViewController.swift in Sources */,
 				F2AD51AB2CC998180081BDE1 /* TransitionTestViewController.swift in Sources */,
 				F2C984C52CC91FC0005D90F6 /* CarouselFlowLayout.swift in Sources */,
-				F2596A512CEC7D9000620721 /* WordGameViewController.swift in Sources */,
 				F2BEED132CCA74D000AA22C3 /* BaseViewController.swift in Sources */,
 				F2BEED022CCA446A00AA22C3 /* TransitionDestinationViewController.swift in Sources */,
-				F28F37E72CEF1E2B00A5A634 /* FillGameLevelManager.swift in Sources */,
-				F2596A572CEC7E2400620721 /* SwipeGameLevel.swift in Sources */,
-				F2AC6BD82CED1A4D00AE8B56 /* CustomPopupNode.swift in Sources */,
 				F2AD51AE2CC9AA480081BDE1 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
