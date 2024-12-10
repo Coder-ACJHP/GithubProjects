@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F206CE122D08C458004D981C /* GradientBorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F206CE112D08C458004D981C /* GradientBorderViewController.swift */; };
 		F21E5C9C2CE602CB00611347 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E5C9B2CE602CB00611347 /* Character.swift */; };
 		F21E5C9F2CE6271200611347 /* ModelTestViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E5C9E2CE6271200611347 /* ModelTestViewController+Extensions.swift */; };
 		F21E5CA22CE6356500611347 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E5CA12CE6356500611347 /* String+Extension.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F206CE112D08C458004D981C /* GradientBorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBorderViewController.swift; sourceTree = "<group>"; };
 		F21E5C9B2CE602CB00611347 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		F21E5C9E2CE6271200611347 /* ModelTestViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelTestViewController+Extensions.swift"; sourceTree = "<group>"; };
 		F21E5CA12CE6356500611347 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -113,6 +115,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F206CE102D08C420004D981C /* GradientBorderViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F206CE112D08C458004D981C /* GradientBorderViewController.swift */,
+			);
+			path = GradientBorderViewController;
+			sourceTree = "<group>";
+		};
 		F21E5C9D2CE626F900611347 /* ModelTestViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +315,7 @@
 				F2AD51AC2CC9AA350081BDE1 /* MainViewController */,
 				F2BEECFF2CCA3F5100AA22C3 /* ViewControllerTransitions */,
 				F26EF1162CD90AE600219B1E /* Parallax3DCardEffectViewController */,
+				F206CE102D08C420004D981C /* GradientBorderViewController */,
 				F2AD51A22CC9667C0081BDE1 /* ImageRippleTransitionViewController */,
 				F2F2135D2CCF7D7B00D646DA /* CardCarousel3DViewController */,
 				F2C984C62CC92BE0005D90F6 /* CarouselViewController */,
@@ -488,6 +499,7 @@
 				F2C984C52CC91FC0005D90F6 /* CarouselFlowLayout.swift in Sources */,
 				F2BEED132CCA74D000AA22C3 /* BaseViewController.swift in Sources */,
 				F2BEED022CCA446A00AA22C3 /* TransitionDestinationViewController.swift in Sources */,
+				F206CE122D08C458004D981C /* GradientBorderViewController.swift in Sources */,
 				F2AD51AE2CC9AA480081BDE1 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

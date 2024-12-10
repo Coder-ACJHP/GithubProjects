@@ -35,7 +35,8 @@ class MainViewController: BaseViewController {
         .init(title: "Animations", items: [
             "Ripple On Images",
             "Tinder Like",
-            "3D Parallax Card"
+            "3D Parallax Card",
+            "Gradinet Border"
         ]),
         .init(title: "Lottie", items: [
             "2D Model Talking"
@@ -56,9 +57,6 @@ class MainViewController: BaseViewController {
         ]),
         .init(title: "SceneKit", items: [
             "3D Model Talking",
-        ]),
-        .init(title: "SpriteKit", items: [
-            "Suggest Words"
         ])
     ]
     private let preferredCellHeight: CGFloat = 78.0
@@ -136,7 +134,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let title = sections[indexPath.section].items[indexPath.row]
-        print(title)
         var destinationVC: UIViewController?
         switch title.lowercased() {
         case let str where str.contains("on images"):
@@ -149,6 +146,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             destinationVC = StackedItemsViewController(title: title)
         case let str where str.contains("3d parallax card"):
             destinationVC = Parallax3DCardEffectViewController(title: title)
+        case let str where str.contains("gradinet border"):
+            destinationVC = GradientBorderViewController(title: title)
         case let str where str.contains("3d image cards"):
             destinationVC = CardCarousel3DViewController(title: title)
         case let str where str.contains("custom tabbar"):
@@ -159,7 +158,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .barSwipe)
         case let str where str.contains("copy"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .copyMachine)
-        case let str where str.contains("Mod"):
+        case let str where str.contains("mod"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .mod)
         case let str where str.contains("flash"):
             destinationVC = TransitionTestViewController(title: title, transitionEffect: .flash)
@@ -169,12 +168,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             destinationVC = ModelTestViewController(title: title)
         case let str where str.contains("2d model talking"):
             destinationVC = TalkingHeadViewController(title: title)
-        case let str where str.contains("suggest words"):
-            destinationVC = WordGameViewController(title: title)
-            destinationVC!.modalTransitionStyle = .coverVertical
-            destinationVC!.modalPresentationStyle = .fullScreen
-            present(destinationVC!, animated: true)
-            return
         default: break
         }
         
