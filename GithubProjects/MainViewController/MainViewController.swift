@@ -36,7 +36,8 @@ class MainViewController: BaseViewController {
             "Ripple On Images",
             "Tinder Like",
             "3D Parallax Card",
-            "Gradinet Border"
+            "Gradinet Border",
+            "Gradinet Shadow"
         ]),
         .init(title: "Lottie", items: [
             "2D Model Talking"
@@ -148,6 +149,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             destinationVC = Parallax3DCardEffectViewController(title: title)
         case let str where str.contains("gradinet border"):
             destinationVC = GradientBorderViewController(title: title)
+        case let str where str.contains("gradinet shadow"):
+            destinationVC = GradientShadowLabelViewController(title: title)
         case let str where str.contains("3d image cards"):
             destinationVC = CardCarousel3DViewController(title: title)
         case let str where str.contains("custom tabbar"):
