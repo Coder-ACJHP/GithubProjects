@@ -24,11 +24,11 @@ jobs:
           xcodebuild build-for-testing \
             -project GithubProjects.xcodeproj \
             -scheme GithubProjects \
-            -destination 'platform=iOS Simulator,name=iPhone 15'
+            -destination 'generic/platform=iOS Simulator'
 
       - name: Run Unit Tests
         run: |
           xcodebuild test-without-building \
             -project GithubProjects.xcodeproj \
             -scheme GithubProjects \
-            -destination 'platform=iOS Simulator,name=iPhone 15'
+            -destination 'generic/platform=iOS Simulator'
